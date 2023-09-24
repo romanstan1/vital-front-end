@@ -3,10 +3,13 @@ import { useState } from "react";
 // import viteLogo from "/vite.svg";
 import { H1, H2 } from "./styles/typography";
 import BiomarkerList from "./components/BiomarkerList";
+import SidePanel from "./components/SidePanel";
+
 function App() {
   return (
     <>
-      <BiomarkerList />
+      <SidePanel />
+      {/* <BiomarkerList /> */}
     </>
   );
 }

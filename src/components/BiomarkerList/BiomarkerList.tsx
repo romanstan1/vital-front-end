@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components";
 import { useEffect } from "react";
+import data from "./biomarker-data.json";
 
 const Wrapper = styled.div``;
 const Button = styled.div`
@@ -18,22 +19,24 @@ const options = {
 };
 
 const BiomarkerList = () => {
-  const getMarkers = () => {
-    fetch("https://api.tryvital.io/v3/lab_tests/markers", options)
-      .then((response) => response.json())
-      .then((response) => {
-        console.log("response", response);
-      })
-      .catch((err) => {
-        console.error("err", err);
-      });
-  };
+  // const getMarkers = () => {
+  //   fetch("https://api.sandbox.tryvital.io/v3/lab_tests/markers", options)
+  //     .then((response) => response.json())
+  //     .then((response) => {
+  //       console.log("response", response);
+  //     })
+  //     .catch((err) => {
+  //       console.error("err", err);
+  //     });
+  // };
+
+  console.log("data", data);
 
   return (
     <Wrapper>
       <Button
         onClick={() => {
-          getMarkers();
+          // getMarkers();
         }}
       >
         Get markers

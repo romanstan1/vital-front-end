@@ -20,7 +20,7 @@ export default createGlobalStyle`
     padding: 0;
     transition: background-color 1s ease;
     color: ${COLORS.black};
-    font-family: 'Work Sans', sans-serif;
+    font-family: 'Inter', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overscroll-behavior-x: none;

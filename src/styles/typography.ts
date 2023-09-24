@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 
 // eslint-disable-next-line
-export const rem = (px: any) => `${px / 18}rem`;
+export const rem = (px: any) => `${px / 16}rem`;
 
 interface Props {
   $bold?: boolean;
@@ -14,33 +14,33 @@ export const styles = {
     font-size: ${rem(90)};
     line-height: ${rem(100)};
     font-weight: 700;
-    font-family: "DM Sans", sans-serif;
+    font-family: "Inter", sans-serif;
     margin: 10px 0;
   `,
   h2: css`
     font-size: ${rem(64)};
     line-height: ${rem(83)};
     font-weight: 700;
-    font-family: "DM Sans", sans-serif;
+    font-family: "Inter", sans-serif;
   `,
   h25: css`
     font-size: ${rem(52)};
     line-height: ${rem(63)};
     font-weight: 700;
-    font-family: "DM Sans", sans-serif;
+    font-family: "Inter", sans-serif;
   `,
   h3: css`
     font-size: ${rem(32)};
     line-height: ${rem(44)};
     font-weight: 700;
-    font-family: "DM Sans", sans-serif;
+    font-family: "Inter", sans-serif;
     margin: 5px 0;
   `,
   h4: css<Props>`
     font-weight: 400;
     font-size: ${rem(26)};
     line-height: ${rem(35)};
-    font-family: "DM Sans", sans-serif;
+    font-family: "Inter", sans-serif;
     margin: 5px 0;
     ${({ $bold }) =>
       $bold &&
@@ -52,7 +52,7 @@ export const styles = {
     font-weight: 400;
     font-size: ${rem(22)};
     line-height: ${rem(28)};
-    font-family: "DM Sans", sans-serif;
+    font-family: "Inter", sans-serif;
     margin: 5px 0;
     ${({ $bold }) =>
       $bold &&
@@ -64,7 +64,7 @@ export const styles = {
     font-weight: 400;
     font-size: ${rem(20)};
     line-height: ${rem(28)};
-    font-family: "DM Sans", sans-serif;
+    font-family: "Inter", sans-serif;
     margin: 5px 0;
     ${({ $bold }) =>
       $bold &&
@@ -76,7 +76,7 @@ export const styles = {
     font-weight: 400;
     font-size: ${rem(18)};
     line-height: ${rem(21)};
-    font-family: "DM Sans", sans-serif;
+    font-family: "Inter", sans-serif;
     margin: 5px 0;
     ${({ $bold }) =>
       $bold &&
@@ -88,7 +88,7 @@ export const styles = {
     font-size: ${rem(24)};
     line-height: ${rem(35)};
     margin: 5px 0;
-    font-family: "Work Sans", sans-serif;
+    font-family: "Inter", sans-serif;
     ${({ $bold }) =>
       $bold &&
       css`
@@ -100,7 +100,7 @@ export const styles = {
     font-size: ${rem(20)};
     line-height: ${rem(28)};
     margin: 5px 0;
-    font-family: "Work Sans", sans-serif;
+    font-family: "Inter", sans-serif;
     ${({ $bold }) =>
       $bold &&
       css`
@@ -117,7 +117,7 @@ export const styles = {
     font-size: ${rem(17)};
     line-height: ${rem(20)};
     margin: 5px 0;
-    font-family: "Work Sans", sans-serif;
+    font-family: "Inter", sans-serif;
     ${({ $bold }) =>
       $bold &&
       css`
@@ -133,17 +133,21 @@ export const styles = {
   label1: css`
     font-size: ${rem(18)};
     line-height: ${rem(25)};
-    font-family: "Work Sans";
+    font-weight: 400;
+    font-family: "Inter";
   `,
   label2: css`
-    font-size: ${rem(14)};
-    line-height: ${rem(20)};
-    font-family: "Work Sans";
+    font-size: ${rem(15)};
+    line-height: ${rem(22.5)};
+    font-weight: 400;
+    font-feature-settings: "kern";
+    font-family: "Inter";
   `,
   label3: css`
     font-size: ${rem(12)};
     line-height: ${rem(15)};
-    font-family: "Work Sans";
+    font-weight: 400;
+    font-family: "Inter";
   `,
 };
 
@@ -167,6 +171,10 @@ const styleHelper = (props: any) => {
 
 /* eslint-disable */
 const fontBase = css`
+  margin: 0;
+  padding: 0;
+  text-rendering: optimizeLegibility;
+  text-size-adjust: 100%;
   ${(props) => weightHelper(props)}
   ${(props) => styleHelper(props)}
 `;
@@ -210,15 +218,15 @@ export const P3 = styled.p<Props>`
   ${fontBase}
 `;
 
-export const L1 = styled.span<Props>`
+export const L1 = styled.p<Props>`
   ${styles.label1}
   ${fontBase}
 `;
-export const L2 = styled.span<Props>`
+export const L2 = styled.p<Props>`
   ${styles.label2}
   ${fontBase}
 `;
-export const L3 = styled.span<Props>`
+export const L3 = styled.p<Props>`
   ${styles.label3}
   ${fontBase}
 `;
