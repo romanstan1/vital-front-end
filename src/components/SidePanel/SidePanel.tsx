@@ -1,5 +1,5 @@
 import { useState } from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import Logo from "../Logo";
 
 import COLORS from "../../styles/colors";
@@ -27,9 +27,9 @@ const Section = styled.div`
 `;
 
 const SidePanel = () => {
-  const [active, setActive] = useState<ActiveType>(ActiveItems.Dashboard);
+  const [active, setActive] = useState<ActiveItems>(ActiveItems.Dashboard);
 
-  const handleClick = (label: ActiveType) => {
+  const handleClick = (label: ActiveItems) => {
     setActive(label);
   };
   return (

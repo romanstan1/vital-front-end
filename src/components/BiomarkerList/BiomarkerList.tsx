@@ -1,5 +1,4 @@
-import styled, { css } from "styled-components";
-import { useEffect } from "react";
+import styled from "styled-components";
 import data from "./biomarker-data.json";
 
 const Wrapper = styled.div``;
@@ -11,12 +10,12 @@ const Button = styled.div`
   display: inline-block;
 `;
 
-const options = {
-  method: "GET",
-  headers: {
-    "x-vital-api-key": "sk_us_xqfTe7ceyptcTDOKOF3jXRik7dBqEPnmD5cL4POFlPE",
-  },
-};
+// const options = {
+//   method: "GET",
+//   headers: {
+//     "x-vital-api-key": "sk_us_xqfTe7ceyptcTDOKOF3jXRik7dBqEPnmD5cL4POFlPE",
+//   },
+// };
 
 const BiomarkerList = () => {
   // const getMarkers = () => {

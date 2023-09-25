@@ -60,18 +60,5 @@ export default createGlobalStyle`
     list-style-type: none;
     margin: 0;
     padding: 0;
-  }
-  
-  input {
-    color: ${COLORS.navy};
-  }
-
-  ::selection {
-    background: ${COLORS.blue01};
-    color: ${COLORS.blue};
-  }
-  ::-moz-selection {
-    background: ${COLORS.blue01};
-    color: ${COLORS.blue};
-  }
+  } 
 `;

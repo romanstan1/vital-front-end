@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import styled, { css } from "styled-components";
 
 import COLORS from "../../styles/colors";
@@ -53,29 +54,31 @@ const Wrapper = styled.div<WrapperProps>`
     }
   }
 
-  ${(props) =>
-    props.$active &&
+  ${({ $active }) =>
+    $active &&
     css`
       border-left: 3px solid ${COLORS.activeBlue};
       background: ${COLORS.midLightGray};
       && p {
         color: ${COLORS.activeBlue};
       }
+    `};
 
-      ${(props) =>
-        props.$iconType === "stroke" &&
-        css`
-          && svg {
-            stroke: ${COLORS.activeBlue};
-          }
-        `};
-      ${(props) =>
-        props.$iconType === "fill" &&
-        css`
-          && svg {
-            fill: ${COLORS.activeBlue};
-          }
-        `};
+  ${({ $active, $iconType }) =>
+    $active &&
+    $iconType === "stroke" &&
+    css`
+      && svg {
+        stroke: ${COLORS.activeBlue};
+      }
+    `};
+  ${({ $active, $iconType }) =>
+    $active &&
+    $iconType === "fill" &&
+    css`
+      && svg {
+        fill: ${COLORS.activeBlue};
+      }
     `};
 `;
 
@@ -95,7 +98,7 @@ const IconWrapper = styled.div`
 `;
 
 interface MenuItemProps {
-  icon: ReactElement<IconProps>;
+  icon: ReactNode;
   label: ActiveItems;
   iconType: IconType;
   active?: boolean;
