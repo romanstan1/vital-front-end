@@ -1,1 +1,1 @@
-export { default } from "./SidePanel";
+export { default, SIDEPANEL_WIDTH } from "./SidePanel";

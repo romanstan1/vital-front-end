@@ -3,7 +3,7 @@ import styled, { css } from "styled-components";
 
 import COLORS from "../../styles/colors";
 import { L2 } from "../../styles/typography";
-import { ActiveItems } from "./types";
+import { ActiveItems } from "../../types";
 
 type IconType = "fill" | "stroke";
 

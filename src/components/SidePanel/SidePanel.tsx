@@ -1,15 +1,17 @@
-import { useState } from "react";
 import styled from "styled-components";
 import Logo from "../Logo";
 
 import COLORS from "../../styles/colors";
 import HomeSVG from "../../assets/home.svg?react";
 import UsersSVG from "../../assets/users.svg?react";
+import PanelsSVG from "../../assets/panels.svg?react";
 import MenuItem from "./MenuItem";
-import { ActiveItems } from "./types";
+import { ActiveItems } from "../../types";
+
+export const SIDEPANEL_WIDTH = 250; // pixels
 
 const Wrapper = styled.div`
-  width: 250px;
+  width: ${SIDEPANEL_WIDTH}px;
   height: 100vh;
   padding-top: 8px;
   border-right: 1px solid ${COLORS.lightGray};
@@ -26,12 +28,12 @@ const Section = styled.div`
   flex-direction: column;
 `;
 
-const SidePanel = () => {
-  const [active, setActive] = useState<ActiveItems>(ActiveItems.Dashboard);
+interface SidePanelProps {
+  active: ActiveItems;
+  handleClick(label: ActiveItems): void;
+}
 
-  const handleClick = (label: ActiveItems) => {
-    setActive(label);
-  };
+const SidePanel = ({ active, handleClick }: SidePanelProps) => {
   return (
     <Wrapper>
       <Logo />
@@ -49,6 +51,13 @@ const SidePanel = () => {
           label={ActiveItems.Users}
           active={active === ActiveItems.Users}
           handleClick={() => handleClick(ActiveItems.Users)}
+        />
+        <MenuItem
+          icon={<PanelsSVG />}
+          iconType="fill"
+          label={ActiveItems.Panels}
+          active={active === ActiveItems.Panels}
+          handleClick={() => handleClick(ActiveItems.Panels)}
         />
       </Section>
     </Wrapper>

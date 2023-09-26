@@ -1,9 +1,18 @@
-import BiomarkerList from "./components/BiomarkerList";
+import { useState } from "react";
+import Panels from "./components/Panels";
+import SidePanel from "./components/SidePanel";
+import { ActiveItems } from "./types";
 
 function App() {
+  const [active, setActive] = useState<ActiveItems>(ActiveItems.Dashboard);
+
+  const handleClick = (label: ActiveItems) => {
+    setActive(label);
+  };
   return (
     <>
-      <BiomarkerList />
+      <SidePanel active={active} handleClick={handleClick} />
+      <Panels />
     </>
   );
 }
