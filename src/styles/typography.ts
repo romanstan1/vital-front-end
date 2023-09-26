@@ -108,7 +108,7 @@ export const styles = {
     font-family: "Inter";
   `,
   label3: css`
-    font-size: ${rem(12)};
+    font-size: ${rem(10)};
     line-height: ${rem(15)};
     font-weight: 400;
     font-family: "Inter";
