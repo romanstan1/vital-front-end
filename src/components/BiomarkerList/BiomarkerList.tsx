@@ -10,12 +10,12 @@ const Button = styled.div`
   display: inline-block;
 `;
 
-// const options = {
-//   method: "GET",
-//   headers: {
-//     "x-vital-api-key": "sk_us_xqfTe7ceyptcTDOKOF3jXRik7dBqEPnmD5cL4POFlPE",
-//   },
-// };
+const options = {
+  method: "GET",
+  headers: {
+    "x-vital-api-key": "sk_us_xqfTe7ceyptcTDOKOF3jXRik7dBqEPnmD5cL4POFlPE",
+  },
+};
 
 const BiomarkerList = () => {
   // const getMarkers = () => {
