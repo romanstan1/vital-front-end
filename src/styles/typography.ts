@@ -11,82 +11,46 @@ interface Props {
 
 export const styles = {
   h1: css`
-    font-size: ${rem(90)};
-    line-height: ${rem(100)};
-    font-weight: 700;
+    font-size: ${rem(25)};
+    line-height: ${rem(25)};
+    font-weight: 600;
     font-family: "Inter", sans-serif;
     margin: 10px 0;
   `,
   h2: css`
-    font-size: ${rem(64)};
-    line-height: ${rem(83)};
-    font-weight: 700;
+    font-size: ${rem(22)};
+    line-height: ${rem(26)};
+    font-weight: 600;
     font-family: "Inter", sans-serif;
   `,
   h25: css`
-    font-size: ${rem(52)};
-    line-height: ${rem(63)};
-    font-weight: 700;
+    font-size: ${rem(20)};
+    line-height: ${rem(20)};
+    font-weight: 600;
     font-family: "Inter", sans-serif;
   `,
   h3: css`
-    font-size: ${rem(32)};
+    font-size: ${rem(19)};
     line-height: ${rem(44)};
-    font-weight: 700;
+    font-weight: 600;
     font-family: "Inter", sans-serif;
     margin: 5px 0;
   `,
   h4: css<Props>`
     font-weight: 400;
-    font-size: ${rem(26)};
-    line-height: ${rem(35)};
-    font-family: "Inter", sans-serif;
-    margin: 5px 0;
-    ${({ $bold }) =>
-      $bold &&
-      css`
-        font-weight: 700;
-      `};
-  `,
-  h5: css<Props>`
-    font-weight: 400;
-    font-size: ${rem(22)};
-    line-height: ${rem(28)};
-    font-family: "Inter", sans-serif;
-    margin: 5px 0;
-    ${({ $bold }) =>
-      $bold &&
-      css`
-        font-weight: 700;
-      `};
-  `,
-  h6: css<Props>`
-    font-weight: 400;
-    font-size: ${rem(20)};
-    line-height: ${rem(28)};
-    font-family: "Inter", sans-serif;
-    margin: 5px 0;
-    ${({ $bold }) =>
-      $bold &&
-      css`
-        font-weight: 700;
-      `};
-  `,
-  h7: css<Props>`
-    font-weight: 400;
     font-size: ${rem(18)};
-    line-height: ${rem(21)};
+    line-height: ${rem(18)};
     font-family: "Inter", sans-serif;
     margin: 5px 0;
     ${({ $bold }) =>
       $bold &&
       css`
-        font-weight: 700;
+        font-weight: 600;
       `};
   `,
   p1: css<Props>`
-    font-size: ${rem(24)};
-    line-height: ${rem(35)};
+    font-size: ${rem(16)};
+    line-height: ${rem(16)};
     margin: 5px 0;
     font-family: "Inter", sans-serif;
     ${({ $bold }) =>
@@ -97,8 +61,8 @@ export const styles = {
   `,
 
   p2: css<Props>`
-    font-size: ${rem(20)};
-    line-height: ${rem(28)};
+    font-size: ${rem(14)};
+    line-height: ${rem(21)};
     margin: 5px 0;
     font-family: "Inter", sans-serif;
     ${({ $bold }) =>
@@ -194,15 +158,6 @@ export const H3 = styled.h3`
 `;
 export const H4 = styled.h4<Props>`
   ${styles.h4}
-`;
-export const H5 = styled.h5<Props>`
-  ${styles.h5}
-`;
-export const H6 = styled.h5<Props>`
-  ${styles.h6}
-`;
-export const H7 = styled.h5<Props>`
-  ${styles.h7}
 `;
 
 export const P1 = styled.p<Props>`

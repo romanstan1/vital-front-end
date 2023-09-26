@@ -1,6 +1,6 @@
 import { useState } from "react";
-import Panels from "./components/Panels";
 import SidePanel from "./components/SidePanel";
+import MainContent from "./components/MainContent";
 import { ActiveItems } from "./types";
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
   return (
     <>
       <SidePanel active={active} handleClick={handleClick} />
-      <Panels />
+      <MainContent active={active} />
     </>
   );
 }

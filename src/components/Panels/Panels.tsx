@@ -1,35 +1,19 @@
-import styled from "styled-components";
+// import styled from "styled-components";
 import data from "./biomarker-data.json";
-import { SIDEPANEL_WIDTH } from "../SidePanel";
+import ContentHeading from "../ContentHeading";
 
-const Wrapper = styled.div`
-  left: ${SIDEPANEL_WIDTH}px;
-  position: absolute;
-  top: 0;
-  width: calc(100% - ${SIDEPANEL_WIDTH}px);
-`;
-
-const Button = styled.div`
-  cursor: pointer;
-  padding: 10px;
-  margin: 10px;
-  border: 1px solid grey;
-  display: inline-block;
-`;
+// const Wrapper = styled.div``;
 
 const Panels = () => {
   console.log("data", data);
 
   return (
-    <Wrapper>
-      <Button
-        onClick={() => {
-          // getMarkers();
-        }}
-      >
-        Get markers
-      </Button>
-    </Wrapper>
+    <>
+      <ContentHeading
+        heading="Panels"
+        subheading="A list of your team's created panels"
+      />
+    </>
   );
 };
 
