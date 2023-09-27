@@ -35,11 +35,12 @@ const PlusIcon = styled(PlusSVG)`
 
 interface ButtonProps {
   children: string;
+  onClick(): void;
 }
 
-const Button = ({ children }: ButtonProps) => {
+const Button = ({ children, onClick }: ButtonProps) => {
   return (
-    <Wrapper>
+    <Wrapper onClick={onClick}>
       <PlusIcon />
       <Text>{children}</Text>
     </Wrapper>

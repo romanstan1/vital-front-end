@@ -1,6 +1,7 @@
 const colors = {
   white: "#FFFFFF",
   black: "#1A202C",
+  black05: "rgb(1, 1, 1, 0.5)",
   hoverBlack: "#000000",
   lightGray: "#e3ebf6", // border color
   panelGray: "#fcfdff", // panel background color
