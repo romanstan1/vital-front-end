@@ -5,32 +5,12 @@ import data from "./biomarker-data.json";
 import ContentHeading from "../ContentHeading";
 import Button from "../Button";
 import { useModal, ModalTypes } from "../../contexts/ModalContext";
+import { BiomarkerData } from "../../types";
 
 const HeadingBar = styled.div`
   display: flex;
   flex-direction: row-reverse;
 `;
-
-interface Marker {
-  description: string;
-  id: number;
-  lab_id: number;
-  name: string;
-  price: string;
-  provider_id: string | null;
-  slug: string;
-  type: string;
-  unit: string | null;
-}
-
-interface Pagination {
-  page: number;
-  size: number;
-  total: number;
-}
-interface BiomarkerData extends Pagination {
-  markers: Marker[];
-}
 
 const options = {
   method: "GET",
@@ -46,7 +26,6 @@ const Panels = () => {
     total: 0,
     markers: [],
   });
-  console.log("bioMarkerData", bioMarkerData);
 
   const { setModal } = useModal();
 
@@ -64,6 +43,7 @@ const Panels = () => {
     setModal({
       isOpen: true,
       type: ModalTypes.CREATE_PANEL,
+      data: bioMarkerData,
     });
   };
 
@@ -74,7 +54,9 @@ const Panels = () => {
         subheading="A list of your team's created panels"
       />
       <HeadingBar>
-        <Button onClick={handleAddPanel}>Add panel</Button>
+        <Button onClick={handleAddPanel} hasPlusIcon>
+          Add panel
+        </Button>
       </HeadingBar>
     </>
   );

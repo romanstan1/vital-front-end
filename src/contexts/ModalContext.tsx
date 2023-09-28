@@ -49,6 +49,7 @@ const Outer = styled.div<OuterProps>`
 type ModalState = {
   isOpen: boolean;
   type?: ModalTypes;
+  data?: any;
 };
 
 type ModalContextType = {
@@ -71,6 +72,7 @@ export const ModalProvider: React.FC<ProviderProps> = ({ children }) => {
   const [modal, setModal] = useState<ModalState>({
     isOpen: false,
     type: undefined,
+    data: undefined,
   });
   const [startHide, setStartHide] = useState(false);
   const ref = useRef<HTMLDivElement | null>(null);
@@ -79,6 +81,7 @@ export const ModalProvider: React.FC<ProviderProps> = ({ children }) => {
     setModal({
       isOpen: false,
       type: undefined,
+      data: undefined,
     });
   };
 
@@ -99,6 +102,8 @@ export const ModalProvider: React.FC<ProviderProps> = ({ children }) => {
     }
   }, [modal]);
 
+  const modalData = modal.data;
+
   return (
     <ModalContext.Provider value={{ modal, setModal }}>
       <Outer
@@ -107,8 +112,8 @@ export const ModalProvider: React.FC<ProviderProps> = ({ children }) => {
         $visible={modal.isOpen}
         onMouseDown={handleCloseOutside}
       >
-        {modal.type === ModalTypes.CREATE_PANEL && (
-          <CreatePanelModal handleClose={handleClose} />
+        {modal.type === ModalTypes.CREATE_PANEL && modalData && (
+          <CreatePanelModal handleClose={handleClose} data={modalData} />
         )}
       </Outer>
       {children}
