@@ -1,15 +1,19 @@
 # Vital front-end test
 
+This project is bootstrapped with Vite https://vitejs.dev/
+
+Install instructions
+
 `yarn`
 `yarn start`
 
 ## The API issue
 
-Unfortunately, the biomarker api https://docs.tryvital.io/api-reference/lab-testing/biomarkers has a CORS error when accessed from a browser.
+Unfortunately, the biomarker api [biomarker api](https://docs.tryvital.io/api-reference/lab-testing/biomarkers) has a CORS error when accessed from a browser.
 
 Also, it does seem strange to access an api with a sensitive api key from the front-end. I'm looking forwards to finding out what the right way of integrating with it is, during the follow up call.
 
-Therefore, in order to progress, I have mocked the api response, when the api errors (which it does in CreatePanelModal, line 164).
+Therefore, in order to progress, I have mocked the api response, when the api errors (which it does in [CreatePanelModal, line 164](https://github.com/romanstan1/vital-front-end/blob/65361d49be6b2583bf55f0786b53715c703eb941/src/components/CreatePanelModal/CreatePanelModal.tsx#L165C1-L165C1)).
 
 ## Design decisions
 
