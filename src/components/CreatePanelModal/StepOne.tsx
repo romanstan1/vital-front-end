@@ -30,12 +30,11 @@ const PanelNameInput = styled.input`
   border-radius: 4px;
   padding-inline-start: 16px;
   padding-inline-end: 16px;
-  border-color: ${COLORS.activeGray01};
-  min-height: 35px;
+  min-height: 42px;
   width: calc(100% - 20px);
   display: block;
   margin: 10px 0;
-  width: 300px;
+  width: 280px;
   &:hover {
     background: ${COLORS.activeGray02};
   }
