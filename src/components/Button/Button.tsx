@@ -6,6 +6,7 @@ import { ReactNode } from "react";
 
 interface StyleProps {
   $isSecondary?: boolean;
+  $isBlue?: boolean;
 }
 
 const Wrapper = styled.div<StyleProps>`
@@ -29,6 +30,15 @@ const Wrapper = styled.div<StyleProps>`
         background: ${COLORS.lightGray};
         color: ${COLORS.activeGray01};
         opacity: 1;
+      }
+    `};
+  ${(props) =>
+    props.$isBlue &&
+    css`
+      background: ${COLORS.activeBlue};
+      &:hover {
+        background: ${COLORS.activeBlue};
+        opacity: 0.95;
       }
     `};
   &:hover {
@@ -62,6 +72,7 @@ interface ButtonProps {
   className?: string;
   hasPlusIcon?: boolean;
   isSecondary?: boolean;
+  isBlue?: boolean;
 }
 
 const Button = ({
@@ -70,9 +81,15 @@ const Button = ({
   className,
   hasPlusIcon,
   isSecondary,
+  isBlue,
 }: ButtonProps) => {
   return (
-    <Wrapper onClick={onClick} className={className} $isSecondary={isSecondary}>
+    <Wrapper
+      onClick={onClick}
+      className={className}
+      $isSecondary={isSecondary}
+      $isBlue={isBlue}
+    >
       {hasPlusIcon && <PlusIcon />}
       <Text $isSecondary={isSecondary}>{children}</Text>
     </Wrapper>

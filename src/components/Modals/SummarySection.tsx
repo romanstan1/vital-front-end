@@ -9,28 +9,36 @@ import BiomarkerPills from "./BiomarkerPills";
 const SummaryWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 15px;
+  padding: 10px 20px 10px 20px;
   width: 100%;
   background: ${COLORS.panelGray};
   border-top: 1px solid ${COLORS.lightGray};
 `;
 
-const Label = styled(L3)`
-  font-size: 10px;
-  text-transform: uppercase;
-  color: ${COLORS.midGray};
+const Label = styled(L2)`
+  /* font-size: 12px; */
+  /* font-size: 10px; */
+  /* text-transform: uppercase; */
+  /* color: ${COLORS.midGray}; */
+  font-weight: 600;
+  font-size: 12px;
 `;
 const MainLabel = styled(L2)`
   font-size: 10px;
   text-transform: uppercase;
   color: ${COLORS.midGray};
 `;
-const Text = styled(P2)``;
+const Text = styled(L2)`
+  font-weight: 400;
+  font-size: 14px;
+`;
 
 const LabelTextItem = styled.div`
   padding: 5px 0;
   display: grid;
-  grid-template-columns: 200px 1fr;
+  grid-template-columns: 140px 1fr;
+  justify-content: flex-start;
+  align-items: center;
 `;
 
 interface Props {

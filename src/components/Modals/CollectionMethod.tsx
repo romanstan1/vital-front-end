@@ -1,13 +1,15 @@
 import styled, { css } from "styled-components";
 import COLORS from "../../styles/colors";
+import { H2, P1, P2, L2, L3 } from "../../styles/typography";
 
 const CollectionButtonWrapper = styled.div`
   display: flex;
   gap: 10px;
+  margin: 10px 0;
 `;
 
 const CollectionButton = styled.div<{ $isActive?: boolean }>`
-  padding: 20px;
+  padding: 12px 20px;
   border-radius: 5px;
   border: 1px solid ${COLORS.lightGray};
   cursor: pointer;
@@ -27,7 +29,7 @@ export enum TestKitType {
   AtHome = "At home phlebotomy",
 }
 
-const ButtonHeader = styled.div``;
+const ButtonHeader = styled(P2)``;
 
 interface Props {
   onClick(type: TestKitType): void;

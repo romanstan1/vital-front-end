@@ -7,14 +7,15 @@ import { H2, P1, P2, L3 } from "../../styles/typography";
 import Button from "../Button";
 import CollectionMethod, { TestKitType } from "./CollectionMethod";
 import SummarySection from "./SummarySection";
+import StepOne from "./StepOne";
+import StepTwo from "./StepTwo";
 import data from "./biomarker-data.json";
 
-const Wrapper = styled.div`
-  max-width: 780px;
+const Wrapper = styled.div<{ $isTall?: boolean }>`
+  max-width: 600px;
   width: 90%;
-  max-height: 720px;
-  height: 80%;
-
+  max-height: 520px;
+  height: 95vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -24,10 +25,16 @@ const Wrapper = styled.div`
   transform: translate(-50%, -50%);
   background: ${COLORS.white};
   position: relative;
-
   border-radius: 4px;
   overflow: hidden;
   padding: 20px 0px 0px 0px;
+  transition: max-height, max-width, 0.3s ease;
+  ${(props) =>
+    props.$isTall &&
+    css`
+      max-height: 720px;
+      max-width: 780px;
+    `};
 `;
 
 interface CreatePanelModalProps {
@@ -56,105 +63,11 @@ const CloseButton = styled.div`
     width: 18px;
   }
 `;
-const RemoveItemCross = styled(CrossSVG)`
-  right: 8px;
-  top: 50%;
-  transform: translate(0%, -50%);
-  position: absolute;
-  transition: 0.1s ease;
-  cursor: pointer;
-  height: 15px;
-  width: 15px;
-  fill: white;
-`;
-
-const TableHeader = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  padding: 5px 15px;
-  position: relative;
-  background: ${COLORS.panelGray};
-  border-bottom: 1px solid ${COLORS.lightGray};
-`;
-
-const Header = styled.div`
-  display: flex;
-  padding: 10px 20px 20px 20px;
-`;
-
-const HeadingCell = styled.div<{ $inActive?: boolean }>`
-  display: flex;
-  flex-direction: column;
-  width: 50%;
-  ${(props) =>
-    props.$inActive &&
-    css`
-      opacity: 0.4;
-    `};
-`;
-const StepWrapper = styled(L3)`
-  font-weight: 500;
-  margin-bottom: 5px;
-`;
 
 const Heading = styled(H2)`
   padding: 0 20px 20px 20px;
-`;
-
-const Subheading = styled(P1)`
-  /* text-align: center; */
-`;
-
-const FilterInput = styled.input`
-  background: ${COLORS.activeGray01};
-  outline: none;
-  border: 0px;
-  border-radius: 4px;
-  padding-inline-start: 16px;
-  padding-inline-end: 16px;
-  border-color: ${COLORS.activeGray01};
-  min-height: 35px;
-  width: calc(100% - 20px);
-  display: block;
-  margin: 10px;
-  &:hover {
-    background: ${COLORS.activeGray02};
-  }
-`;
-
-const PanelNameInput = styled(FilterInput)`
-  width: 300px;
-`;
-
-const Label = styled.label``;
-
-const BiomarkerLineItem = styled.div<{ $selected?: boolean }>`
-  padding: 5px;
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  border-radius: 4px;
-  margin: 1px 0;
-  cursor: pointer;
-  user-select: none;
-  position: relative;
-  &:hover {
-    background: ${COLORS.activeGray01};
-  }
-  svg {
-    opacity: 0;
-  }
-  ${(props) =>
-    props.$selected &&
-    css`
-      background: ${COLORS.black};
-      color: ${COLORS.white};
-      &:hover {
-        background: ${COLORS.black};
-        svg {
-          opacity: 1;
-        }
-      }
-    `};
+  text-align: left;
+  border-bottom: 1px solid ${COLORS.lightGray};
 `;
 
 const Content = styled.div`
@@ -164,49 +77,22 @@ const Content = styled.div`
   width: 100%;
 `;
 
-const ContentInner = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
-  overflow-y: scroll;
-  padding: 10px;
-  height: 100%;
-  &::-webkit-scrollbar-track {
-    border-radius: 4px;
-    background-color: ${COLORS.panelGray};
-  }
-
-  &::-webkit-scrollbar {
-    width: 4px;
-    background-color: ${COLORS.panelGray};
-  }
-
-  &::-webkit-scrollbar-thumb {
-    border-radius: 6px;
-    background-color: ${COLORS.activeGray02};
-  }
-`;
 const ContinueButton = styled(Button)`
   position: absolute;
   right: 20px;
-  top: 15px;
+  bottom: 15px;
 `;
+
 const BackButton = styled(Button)`
   position: absolute;
   left: 20px;
-  top: 15px;
-`;
-
-const TableWrapper = styled.div`
-  background: ${COLORS.panelGray};
-  border-top: 1px solid ${COLORS.lightGray};
+  bottom: 15px;
 `;
 
 const ButtonBar = styled.div`
-  min-height: 71px;
-  padding: 15px;
+  min-height: 60px;
+  padding: 5px 15px 15px 15px;
   background: ${COLORS.panelGray};
-  border-top: 1px solid ${COLORS.lightGray};
   position: relative;
   width: 100%;
 `;
@@ -215,6 +101,12 @@ const Cell = styled(P2)`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+`;
+
+const HeadingCell = styled(Cell)`
+  font-size: 10px;
+  text-transform: uppercase;
+  color: ${COLORS.midGray};
 `;
 
 const options = {
@@ -252,7 +144,7 @@ const CreatePanelModal: React.FC<CreatePanelModalProps> = ({
     );
   };
 
-  const handleClick = (marker: Marker) => {
+  const handleClickBiomarker = (marker: Marker) => {
     const exists = selectedBiomarkers.find((bm) => bm.id === marker.id);
     if (exists) handleRemoveBiomarker(marker.id);
     else setSelectedBiomarkers((markers) => [...markers, marker]);
@@ -269,7 +161,7 @@ const CreatePanelModal: React.FC<CreatePanelModalProps> = ({
     setBiomarkers(filteredVals);
   };
 
-  const handleFilter = (e: any) => {
+  const handleFilter = (e: ChangeEvent<HTMLInputElement>) => {
     filterByValue(e.target.value);
   };
   const handleCollectionMethodUpdate = (type: TestKitType) => {
@@ -302,105 +194,60 @@ const CreatePanelModal: React.FC<CreatePanelModalProps> = ({
     //
   };
 
-  const step0markup = step === 0 && (
-    <ContentInner>
-      <Label>Name your panel</Label>
-      <PanelNameInput
-        onChange={handleNameInput}
-        placeholder="My awesome panel"
-        value={panelName}
-      />
-      <Label>Choose your collection method</Label>
-      <CollectionMethod
-        onClick={handleCollectionMethodUpdate}
-        method={testKit}
-      />
-    </ContentInner>
-  );
-
-  const step1markup = step === 1 && (
-    <>
-      <TableWrapper>
-        <FilterInput
-          onChange={handleFilter}
-          placeholder="Filter by name or description"
-        />
-        <TableHeader>
-          <Cell>Name</Cell>
-          <Cell>Description</Cell>
-        </TableHeader>
-      </TableWrapper>
-      <ContentInner>
-        {biomarkers.map((marker) => {
-          return (
-            <BiomarkerLineItem
-              key={marker.id}
-              $selected={Boolean(
-                selectedBiomarkers.find((bm) => bm.id === marker.id)
-              )}
-              onClick={() => handleClick(marker)}
-            >
-              <Cell>{marker.name}</Cell>
-              <Cell>{marker.description}</Cell>
-              <RemoveItemCross />
-            </BiomarkerLineItem>
-          );
-        })}
-      </ContentInner>
-    </>
-  );
-
-  const biomarkerText = `${selectedBiomarkers.length.toString()} biomarker${
-    selectedBiomarkers.length > 1 ? "s" : ""
-  }`;
+  const summaryBarExists = panelName.length > 0 || testKit;
 
   return (
-    <Wrapper>
+    <Wrapper $isTall={step === 1}>
       <CloseButton onClick={handleClose}>
         <CrossSVG />
       </CloseButton>
       <Content>
         <Heading>Create a panel</Heading>
-        {/* <Header>
-          {step === 0 && (
-            <HeadingCell>
-              <StepWrapper>STEP 1</StepWrapper>
-              <Subheading>Choose your biomarkers</Subheading>
-            </HeadingCell>
-          )}
-          {step === 1 && (
-            <HeadingCell>
-              <StepWrapper>STEP 2</StepWrapper>
-              <Subheading>Name and confirm</Subheading>
-            </HeadingCell>
-          )}
-        </Header> */}
-        {step0markup}
-        {step1markup}
-        <SummarySection
-          panelName={panelName}
-          testKitMethod={testKit}
-          biomarkers={selectedBiomarkers}
-          handleRemoveBiomarker={handleRemoveBiomarker}
-        />
+        {step === 0 && (
+          <StepOne
+            handleNameInput={handleNameInput}
+            panelName={panelName}
+            handleCollectionMethodUpdate={handleCollectionMethodUpdate}
+            testKit={testKit}
+          />
+        )}
+        {step === 1 && (
+          <StepTwo
+            biomarkers={biomarkers}
+            selectedBiomarkers={selectedBiomarkers}
+            handleFilter={handleFilter}
+            handleClickBiomarker={handleClickBiomarker}
+          />
+        )}
 
-        <ButtonBar>
-          {step === 1 && (
-            <BackButton onClick={handleBackStep} isSecondary>
-              Back
-            </BackButton>
-          )}
-          {step === 1 && (
-            <>
-              <ContinueButton onClick={handleCreatePanel}>
-                Create panel with {biomarkerText}
-              </ContinueButton>
-            </>
-          )}
-          {step === 0 && panelName.length > 0 && testKit && (
-            <ContinueButton onClick={handleNextStep}>Continue</ContinueButton>
-          )}
-        </ButtonBar>
+        {summaryBarExists && (
+          <SummarySection
+            panelName={panelName}
+            testKitMethod={testKit}
+            biomarkers={selectedBiomarkers}
+            handleRemoveBiomarker={handleRemoveBiomarker}
+          />
+        )}
+
+        {summaryBarExists && (
+          <ButtonBar>
+            {step === 1 && (
+              <BackButton onClick={handleBackStep} isSecondary>
+                Back
+              </BackButton>
+            )}
+            {step === 1 && (
+              <>
+                <ContinueButton onClick={handleCreatePanel}>
+                  Create panel
+                </ContinueButton>
+              </>
+            )}
+            {step === 0 && panelName.length > 0 && testKit && (
+              <ContinueButton onClick={handleNextStep}>Continue</ContinueButton>
+            )}
+          </ButtonBar>
+        )}
       </Content>
     </Wrapper>
   );

@@ -1,17 +1,18 @@
 import CrossSVG from "../../assets/cross.svg?react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import COLORS from "../../styles/colors";
 import { Marker } from "../../types";
-import { L2, L3, P2 } from "../../styles/typography";
+import { L3 } from "../../styles/typography";
 
 const Wrapper = styled.div`
-  padding: 5px 0;
+  padding: 0;
   display: flex;
+  flex-wrap: wrap;
   gap: 5px;
 `;
 
 const PillWrapper = styled.div`
-  padding: 5px 10px;
+  padding: 5px 8px 5px 10px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -19,6 +20,11 @@ const PillWrapper = styled.div`
   gap: 5px;
   background: ${COLORS.black};
   color: ${COLORS.white};
+  cursor: pointer;
+  transition: 0.1s ease;
+  &:hover {
+    opacity: 0.9;
+  }
 `;
 
 const PillText = styled(L3)`
