@@ -9,7 +9,7 @@ Install instructions
 
 ## The API issue
 
-Unfortunately, the biomarker api [biomarker api](https://docs.tryvital.io/api-reference/lab-testing/biomarkers) has a CORS error when accessed from a browser.
+Unfortunately, the [biomarker api](https://docs.tryvital.io/api-reference/lab-testing/biomarkers) has a CORS error when accessed from a browser.
 
 Also, it does seem strange to access an api with a sensitive api key from the front-end. I'm looking forwards to finding out what the right way of integrating with it is, during the follow up call.
 
