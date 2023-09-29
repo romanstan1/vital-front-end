@@ -1,5 +1,5 @@
 import CrossSVG from "../../assets/cross.svg?react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import COLORS from "../../styles/colors";
 import { Marker } from "../../types";
 import { L3 } from "../../styles/typography";
@@ -11,7 +11,7 @@ const Wrapper = styled.div`
   gap: 5px;
 `;
 
-const PillWrapper = styled.div`
+const PillWrapper = styled.div<{ $canClick?: boolean }>`
   padding: 5px 8px 5px 10px;
   display: flex;
   justify-content: center;
@@ -20,11 +20,15 @@ const PillWrapper = styled.div`
   gap: 5px;
   background: ${COLORS.black};
   color: ${COLORS.white};
-  cursor: pointer;
   transition: 0.1s ease;
-  &:hover {
-    opacity: 0.9;
-  }
+  ${(props) =>
+    props.$canClick &&
+    css`
+      cursor: pointer;
+      &:hover {
+        opacity: 0.9;
+      }
+    `};
 `;
 
 const PillText = styled(L3)`
@@ -43,20 +47,25 @@ const CloseIcon = styled(CrossSVG)`
 
 interface PillProps {
   marker: Marker;
-  handleRemove(id: number): void;
+  handleRemove?(id: number): void;
 }
 const Pill = ({ marker, handleRemove }: PillProps) => {
   return (
-    <PillWrapper onClick={() => handleRemove(marker.id)}>
+    <PillWrapper
+      $canClick={Boolean(handleRemove)}
+      onClick={() => {
+        if (handleRemove) handleRemove(marker.id);
+      }}
+    >
       <PillText>{marker.name}</PillText>
-      <CloseIcon />
+      {handleRemove && <CloseIcon />}
     </PillWrapper>
   );
 };
 
 interface Props {
   biomarkers: Marker[];
-  handleRemove(id: number): void;
+  handleRemove?(id: number): void;
 }
 
 const BiomarkerPills = ({ biomarkers, handleRemove }: Props) => {

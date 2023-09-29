@@ -2,7 +2,8 @@ import React, { ChangeEvent } from "react";
 import styled from "styled-components";
 import COLORS from "../../styles/colors";
 import { P2 } from "../../styles/typography";
-import CollectionMethod, { TestKitType } from "./CollectionMethod";
+import CollectionMethod from "./CollectionMethod";
+import { TestKitType } from "../../types";
 
 const StepOneContent = styled.div`
   display: flex;

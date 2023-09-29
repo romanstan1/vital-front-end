@@ -48,6 +48,7 @@ const Wrapper = styled.div<StyleProps>`
 
 const Text = styled(L3)<StyleProps>`
   font-size: 10px;
+  font-weight: 500;
   color: white;
   text-transform: uppercase;
   ${(props) =>

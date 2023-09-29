@@ -1,15 +1,15 @@
-import React, { useEffect, useState, ChangeEvent } from "react";
+import { useEffect, useState, ChangeEvent } from "react";
 import styled, { css } from "styled-components";
 import COLORS from "../../styles/colors";
 import CrossSVG from "../../assets/cross.svg?react";
-import { BiomarkerData, Marker } from "../../types";
-import { H2, P1, P2, L3 } from "../../styles/typography";
+import { BiomarkerData, Marker, TestKitType, Panel } from "../../types";
+import { H2 } from "../../styles/typography";
 import Button from "../Button";
-import CollectionMethod, { TestKitType } from "./CollectionMethod";
 import SummarySection from "./SummarySection";
 import StepOne from "./StepOne";
 import StepTwo from "./StepTwo";
 import data from "./biomarker-data.json";
+import { usePanels } from "../../contexts/PanelContext";
 
 const Wrapper = styled.div<{ $isTall?: boolean }>`
   max-width: 600px;
@@ -77,7 +77,7 @@ const Content = styled.div`
   width: 100%;
 `;
 
-const ContinueButton = styled(Button)`
+const CtaButton = styled(Button)`
   position: absolute;
   right: 20px;
   bottom: 15px;
@@ -95,18 +95,6 @@ const ButtonBar = styled.div`
   background: ${COLORS.panelGray};
   position: relative;
   width: 100%;
-`;
-
-const Cell = styled(P2)`
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-`;
-
-const HeadingCell = styled(Cell)`
-  font-size: 10px;
-  text-transform: uppercase;
-  color: ${COLORS.midGray};
 `;
 
 const options = {
@@ -131,6 +119,7 @@ const CreatePanelModal: React.FC<CreatePanelModalProps> = ({
   const [testKit, setTestKit] = useState<TestKitType | undefined>(undefined);
   const [selectedBiomarkers, setSelectedBiomarkers] = useState<Marker[]>([]);
   const [step, setStep] = useState<number>(0);
+  const { addPanel } = usePanels();
 
   const handleNameInput = (e: ChangeEvent<HTMLInputElement>) => {
     setPanelName(e.target.value);
@@ -190,11 +179,21 @@ const CreatePanelModal: React.FC<CreatePanelModalProps> = ({
   const handleNextStep = () => {
     setStep(1);
   };
+
   const handleBackStep = () => {
     setStep(0);
   };
+
   const handleCreatePanel = () => {
-    //
+    if (panelName && testKit && selectedBiomarkers.length > 0) {
+      const newPanel: Panel = {
+        name: panelName,
+        testKitType: testKit,
+        markers: selectedBiomarkers,
+      };
+      addPanel(newPanel);
+      handleClose();
+    }
   };
 
   const summaryBarExists = panelName.length > 0 || testKit;
@@ -234,20 +233,20 @@ const CreatePanelModal: React.FC<CreatePanelModalProps> = ({
 
         {summaryBarExists && (
           <ButtonBar>
-            {step === 1 && (
-              <BackButton onClick={handleBackStep} isSecondary>
-                Back
-              </BackButton>
+            {step === 0 && panelName.length > 0 && testKit && (
+              <CtaButton onClick={handleNextStep}>Continue</CtaButton>
             )}
             {step === 1 && (
               <>
-                <ContinueButton onClick={handleCreatePanel}>
-                  Create panel
-                </ContinueButton>
+                <BackButton onClick={handleBackStep} isSecondary>
+                  Back
+                </BackButton>
+                {selectedBiomarkers.length > 0 && (
+                  <CtaButton onClick={handleCreatePanel}>
+                    Create panel
+                  </CtaButton>
+                )}
               </>
-            )}
-            {step === 0 && panelName.length > 0 && testKit && (
-              <ContinueButton onClick={handleNextStep}>Continue</ContinueButton>
             )}
           </ButtonBar>
         )}

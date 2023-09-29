@@ -8,6 +8,7 @@ const colors = {
   activeGray02: "#E2E8F0", // darker active color
   panelGray: "#fcfdff", // panel background color
   midLightGray: "#f4f8ff", // active background
+  tableGray: "rgb(149, 170, 201)", // table color text
   midGray: "#6e84a3", // text color
   activeBlue: "#003fff",
 };

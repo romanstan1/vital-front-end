@@ -3,12 +3,15 @@ import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import GlobalStyles from "./styles/global";
 import { ModalProvider } from "./contexts/ModalContext";
+import { PanelProvider } from "./contexts/PanelContext";
 
 const Main = () => {
   return (
-    <ModalProvider>
-      <App />
-    </ModalProvider>
+    <PanelProvider>
+      <ModalProvider>
+        <App />
+      </ModalProvider>
+    </PanelProvider>
   );
 };
 

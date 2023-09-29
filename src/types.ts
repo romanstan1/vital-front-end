@@ -21,6 +21,18 @@ interface Pagination {
   size: number;
   total: number;
 }
+
 export interface BiomarkerData extends Pagination {
+  markers: Marker[];
+}
+
+export enum TestKitType {
+  TestKit = "Test kit",
+  AtHome = "At home phlebotomy",
+}
+
+export interface Panel {
+  name: string;
+  testKitType: TestKitType;
   markers: Marker[];
 }

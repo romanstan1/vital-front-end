@@ -1,10 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import COLORS from "../../styles/colors";
-import { TestKitType } from "./CollectionMethod";
-import { L2, L3, P2 } from "../../styles/typography";
-import { Marker } from "../../types";
-import BiomarkerPills from "./BiomarkerPills";
+import { L2 } from "../../styles/typography";
+import { Marker, TestKitType } from "../../types";
+import BiomarkerPills from "../BiomarkerPills";
 
 const SummaryWrapper = styled.div`
   display: flex;
@@ -16,12 +15,8 @@ const SummaryWrapper = styled.div`
 `;
 
 const Label = styled(L2)`
-  /* font-size: 12px; */
-  /* font-size: 10px; */
-  /* text-transform: uppercase; */
-  /* color: ${COLORS.midGray}; */
   font-weight: 600;
-  font-size: 12px;
+  font-size: 14px;
 `;
 const MainLabel = styled(L2)`
   font-size: 10px;

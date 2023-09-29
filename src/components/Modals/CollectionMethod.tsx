@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components";
 import COLORS from "../../styles/colors";
-import { H2, P1, P2, L2, L3 } from "../../styles/typography";
+import { P2 } from "../../styles/typography";
+import { TestKitType } from "../../types";
 
 const CollectionButtonWrapper = styled.div`
   display: flex;
@@ -23,11 +24,6 @@ const CollectionButton = styled.div<{ $isActive?: boolean }>`
       background: ${COLORS.activeGray01};
     `};
 `;
-
-export enum TestKitType {
-  TestKit = "Test kit",
-  AtHome = "At home phlebotomy",
-}
 
 const ButtonHeader = styled(P2)``;
 
