@@ -61,7 +61,7 @@ const RowCellText = styled(P2)`
   width: 100%;
 `;
 
-const RowCell = styled(P2)`
+const RowCell = styled.div`
   padding: 12px 24px;
   display: flex;
   justify-content: flex-start;
