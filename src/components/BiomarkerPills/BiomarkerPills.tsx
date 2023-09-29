@@ -1,5 +1,6 @@
-import CrossSVG from "../../assets/cross.svg?react";
 import styled, { css } from "styled-components";
+
+import CrossSVG from "../../assets/cross.svg?react";
 import COLORS from "../../styles/colors";
 import { Marker } from "../../types";
 import { L3 } from "../../styles/typography";

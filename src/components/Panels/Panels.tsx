@@ -1,9 +1,9 @@
 import styled from "styled-components";
+
 import ContentHeading from "../ContentHeading";
 import PanelsTable from "./PanelsTable";
 import Button from "../Button";
 import { useModal, ModalTypes } from "../../contexts/ModalContext";
-import { usePanels } from "../../contexts/PanelContext";
 
 const HeadingBar = styled.div`
   display: flex;
@@ -12,7 +12,6 @@ const HeadingBar = styled.div`
 
 const Panels = () => {
   const { setModal } = useModal();
-  const { panels } = usePanels();
 
   const handleAddPanel = () => {
     setModal({
@@ -20,8 +19,6 @@ const Panels = () => {
       type: ModalTypes.CREATE_PANEL,
     });
   };
-
-  console.log("panels", panels);
 
   return (
     <>

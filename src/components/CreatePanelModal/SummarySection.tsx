@@ -1,5 +1,5 @@
-import React from "react";
 import styled from "styled-components";
+
 import COLORS from "../../styles/colors";
 import { L2 } from "../../styles/typography";
 import { Marker, TestKitType } from "../../types";

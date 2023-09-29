@@ -1,5 +1,6 @@
 import { useEffect, useState, ChangeEvent } from "react";
 import styled, { css } from "styled-components";
+
 import COLORS from "../../styles/colors";
 import CrossSVG from "../../assets/cross.svg?react";
 import { BiomarkerData, Marker, TestKitType, Panel } from "../../types";
@@ -11,7 +12,7 @@ import StepTwo from "./StepTwo";
 import data from "./biomarker-data.json";
 import { usePanels } from "../../contexts/PanelContext";
 
-const Wrapper = styled.div<{ $isTall?: boolean }>`
+const Wrapper = styled.div<{ $isLarge?: boolean }>`
   max-width: 600px;
   width: 90%;
   max-height: 520px;
@@ -30,17 +31,12 @@ const Wrapper = styled.div<{ $isTall?: boolean }>`
   padding: 20px 0px 0px 0px;
   transition: max-height, max-width, 0.3s ease;
   ${(props) =>
-    props.$isTall &&
+    props.$isLarge &&
     css`
       max-height: 720px;
       max-width: 780px;
     `};
 `;
-
-interface CreatePanelModalProps {
-  handleClose(): void;
-  // data: BiomarkerData;
-}
 
 const CloseButton = styled.div`
   right: 10px;
@@ -104,9 +100,11 @@ const options = {
   },
 };
 
-const CreatePanelModal: React.FC<CreatePanelModalProps> = ({
-  handleClose,
-}: CreatePanelModalProps) => {
+interface CreatePanelModalProps {
+  handleClose(): void;
+}
+
+const CreatePanelModal = ({ handleClose }: CreatePanelModalProps) => {
   const [bioMarkerData, setBioMarkerData] = useState<BiomarkerData>({
     page: 0,
     size: 0,
@@ -199,7 +197,7 @@ const CreatePanelModal: React.FC<CreatePanelModalProps> = ({
   const summaryBarExists = panelName.length > 0 || testKit;
 
   return (
-    <Wrapper $isTall={step === 1}>
+    <Wrapper $isLarge={step === 1}>
       <CloseButton onClick={handleClose}>
         <CrossSVG />
       </CloseButton>

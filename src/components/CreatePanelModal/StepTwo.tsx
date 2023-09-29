@@ -1,5 +1,6 @@
-import React, { ChangeEvent } from "react";
+import { ChangeEvent } from "react";
 import styled, { css } from "styled-components";
+
 import COLORS from "../../styles/colors";
 import { P2 } from "../../styles/typography";
 import { Marker } from "../../types";

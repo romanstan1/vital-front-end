@@ -7,9 +7,9 @@ import React, {
   MouseEvent,
 } from "react";
 import styled, { css } from "styled-components";
-import COLORS from "../styles/colors";
 
-import { CreatePanelModal } from "../components/Modals";
+import COLORS from "../styles/colors";
+import CreatePanelModal from "../components/CreatePanelModal";
 
 interface OuterProps {
   $visible?: boolean;

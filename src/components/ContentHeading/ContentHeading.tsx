@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 import { H2, P2 } from "../../styles/typography";
 import COLORS from "../../styles/colors";
 

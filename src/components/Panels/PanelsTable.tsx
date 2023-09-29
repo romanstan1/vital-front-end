@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 import { usePanels } from "../../contexts/PanelContext";
 import COLORS from "../../styles/colors";
 import { P2 } from "../../styles/typography";
