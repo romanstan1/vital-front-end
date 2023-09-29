@@ -16,7 +16,7 @@ const FilterInput = styled.input`
   min-height: 35px;
   width: 500px;
   display: block;
-  margin: 10px 0 10px 10px;
+  margin: 12px 0 10px 20px;
   &:hover {
     background: ${COLORS.activeGray02};
   }

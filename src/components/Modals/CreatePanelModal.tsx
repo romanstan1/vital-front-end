@@ -179,6 +179,9 @@ const CreatePanelModal: React.FC<CreatePanelModalProps> = ({
         setBioMarkerData(data);
       });
   }, []);
+  useEffect(() => {
+    if (step === 0) setSelectedBiomarkers([]); // reset seleted if you go back to step 0
+  }, [step]);
 
   useEffect(() => {
     setBiomarkers(bioMarkerData.markers);
