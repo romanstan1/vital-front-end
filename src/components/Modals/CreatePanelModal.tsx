@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, ChangeEvent } from "react";
 import styled, { css } from "styled-components";
 import COLORS from "../../styles/colors";
 import CrossSVG from "../../assets/cross.svg?react";
 import { BiomarkerData, Marker } from "../../types";
-import { H2, P1, P2, L2, L3 } from "../../styles/typography";
+import { H2, P1, P2, L3 } from "../../styles/typography";
 import Button from "../Button";
+import CollectionMethod, { TestKitType } from "./CollectionMethod";
+import SummarySection from "./SummarySection";
+import data from "./biomarker-data.json";
 
 const Wrapper = styled.div`
   max-width: 780px;
@@ -29,7 +32,7 @@ const Wrapper = styled.div`
 
 interface CreatePanelModalProps {
   handleClose(): void;
-  data: BiomarkerData;
+  // data: BiomarkerData;
 }
 
 const CloseButton = styled.div`
@@ -143,11 +146,10 @@ const BiomarkerLineItem = styled.div<{ $selected?: boolean }>`
   ${(props) =>
     props.$selected &&
     css`
-      background: ${COLORS.activeBlue};
+      background: ${COLORS.black};
       color: ${COLORS.white};
-      opacity: 0.9;
       &:hover {
-        background: ${COLORS.activeBlue};
+        background: ${COLORS.black};
         svg {
           opacity: 1;
         }
@@ -215,22 +217,44 @@ const Cell = styled(P2)`
   text-overflow: ellipsis;
 `;
 
+const options = {
+  method: "GET",
+  headers: {
+    "x-vital-api-key": "sk_us_xqfTe7ceyptcTDOKOF3jXRik7dBqEPnmD5cL4POFlPE",
+  },
+};
+
 const CreatePanelModal: React.FC<CreatePanelModalProps> = ({
   handleClose,
-  data: bioMarkerData,
 }: CreatePanelModalProps) => {
-  const [biomarkers, setBiomarkers] = useState<Marker[]>(bioMarkerData.markers);
+  const [bioMarkerData, setBioMarkerData] = useState<BiomarkerData>({
+    page: 0,
+    size: 0,
+    total: 0,
+    markers: [],
+  });
+
+  const [biomarkers, setBiomarkers] = useState<Marker[]>([]);
+  const [panelName, setPanelName] = useState<string>("");
+  const [testKit, setTestKit] = useState<TestKitType | undefined>(undefined);
   const [selectedBiomarkers, setSelectedBiomarkers] = useState<Marker[]>([]);
   const [step, setStep] = useState<number>(0);
 
+  const handleNameInput = (e: ChangeEvent<HTMLInputElement>) => {
+    setPanelName(e.target.value);
+  };
+
+  const handleRemoveBiomarker = (markerId: number) => {
+    setSelectedBiomarkers((markers) =>
+      markers.filter((mk) => {
+        return mk.id !== markerId;
+      })
+    );
+  };
+
   const handleClick = (marker: Marker) => {
     const exists = selectedBiomarkers.find((bm) => bm.id === marker.id);
-    if (exists)
-      setSelectedBiomarkers((markers) =>
-        markers.filter((mk) => {
-          return mk.id !== marker.id;
-        })
-      );
+    if (exists) handleRemoveBiomarker(marker.id);
     else setSelectedBiomarkers((markers) => [...markers, marker]);
   };
 
@@ -248,23 +272,53 @@ const CreatePanelModal: React.FC<CreatePanelModalProps> = ({
   const handleFilter = (e: any) => {
     filterByValue(e.target.value);
   };
+  const handleCollectionMethodUpdate = (type: TestKitType) => {
+    setTestKit(type);
+  };
 
-  // const arrayOfObject = [
-  //   { name: "Paul", country: "Canada" },
-  //   { name: "Lea", country: "Italy" },
-  //   { name: "John", country: "Italy" },
-  // ];
+  useEffect(() => {
+    fetch("https://api.sandbox.tryvital.io/v3/lab_tests/markers", options)
+      .then((response) => response.json())
+      .then((response) => {
+        setBioMarkerData(response);
+      })
+      .catch(() => {
+        // Since there is a CORS error when accessing the biomarker api from the FE, the biomarker data is set with mocked data on error.
+        setBioMarkerData(data);
+      });
+  }, []);
 
-  // console.log(filterByValue(arrayOfObject, "lea")); // [{name: 'Lea', country: 'Italy'}]
-  // console.log(filterByValue(arrayOfObject, "ita"));
+  useEffect(() => {
+    setBiomarkers(bioMarkerData.markers);
+  }, [bioMarkerData]);
+
   const handleNextStep = () => {
     setStep(1);
   };
   const handleBackStep = () => {
     setStep(0);
   };
+  const handleCreatePanel = () => {
+    //
+  };
 
   const step0markup = step === 0 && (
+    <ContentInner>
+      <Label>Name your panel</Label>
+      <PanelNameInput
+        onChange={handleNameInput}
+        placeholder="My awesome panel"
+        value={panelName}
+      />
+      <Label>Choose your collection method</Label>
+      <CollectionMethod
+        onClick={handleCollectionMethodUpdate}
+        method={testKit}
+      />
+    </ContentInner>
+  );
+
+  const step1markup = step === 1 && (
     <>
       <TableWrapper>
         <FilterInput
@@ -296,33 +350,9 @@ const CreatePanelModal: React.FC<CreatePanelModalProps> = ({
     </>
   );
 
-  const step1markup = step === 1 && (
-    <>
-      <Label>Name your panel</Label>
-      <PanelNameInput onChange={handleFilter} placeholder="My awesome panel" />
-      <TableWrapper>
-        <TableHeader>
-          <Cell>Name</Cell>
-          <Cell>Description</Cell>
-        </TableHeader>
-      </TableWrapper>
-      <ContentInner>
-        {selectedBiomarkers.map((marker) => {
-          return (
-            <BiomarkerLineItem
-              key={marker.id}
-              $selected
-              onClick={() => handleClick(marker)}
-            >
-              <Cell>{marker.name}</Cell>
-              <Cell>{marker.description}</Cell>
-              <RemoveItemCross />
-            </BiomarkerLineItem>
-          );
-        })}
-      </ContentInner>
-    </>
-  );
+  const biomarkerText = `${selectedBiomarkers.length.toString()} biomarker${
+    selectedBiomarkers.length > 1 ? "s" : ""
+  }`;
 
   return (
     <Wrapper>
@@ -331,7 +361,7 @@ const CreatePanelModal: React.FC<CreatePanelModalProps> = ({
       </CloseButton>
       <Content>
         <Heading>Create a panel</Heading>
-        <Header>
+        {/* <Header>
           {step === 0 && (
             <HeadingCell>
               <StepWrapper>STEP 1</StepWrapper>
@@ -344,9 +374,16 @@ const CreatePanelModal: React.FC<CreatePanelModalProps> = ({
               <Subheading>Name and confirm</Subheading>
             </HeadingCell>
           )}
-        </Header>
+        </Header> */}
         {step0markup}
         {step1markup}
+        <SummarySection
+          panelName={panelName}
+          testKitMethod={testKit}
+          biomarkers={selectedBiomarkers}
+          handleRemoveBiomarker={handleRemoveBiomarker}
+        />
+
         <ButtonBar>
           {step === 1 && (
             <BackButton onClick={handleBackStep} isSecondary>
@@ -354,15 +391,14 @@ const CreatePanelModal: React.FC<CreatePanelModalProps> = ({
             </BackButton>
           )}
           {step === 1 && (
-            <ContinueButton onClick={handleNextStep}>
-              Create panel
-            </ContinueButton>
+            <>
+              <ContinueButton onClick={handleCreatePanel}>
+                Create panel with {biomarkerText}
+              </ContinueButton>
+            </>
           )}
-          {step === 0 && selectedBiomarkers.length > 0 && (
-            <ContinueButton onClick={handleNextStep}>
-              Add {selectedBiomarkers.length} biomarker
-              {selectedBiomarkers.length > 1 ? "s" : ""}
-            </ContinueButton>
+          {step === 0 && panelName.length > 0 && testKit && (
+            <ContinueButton onClick={handleNextStep}>Continue</ContinueButton>
           )}
         </ButtonBar>
       </Content>

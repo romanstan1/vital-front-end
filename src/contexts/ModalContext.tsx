@@ -102,8 +102,6 @@ export const ModalProvider: React.FC<ProviderProps> = ({ children }) => {
     }
   }, [modal]);
 
-  const modalData = modal.data;
-
   return (
     <ModalContext.Provider value={{ modal, setModal }}>
       <Outer
@@ -112,8 +110,8 @@ export const ModalProvider: React.FC<ProviderProps> = ({ children }) => {
         $visible={modal.isOpen}
         onMouseDown={handleCloseOutside}
       >
-        {modal.type === ModalTypes.CREATE_PANEL && modalData && (
-          <CreatePanelModal handleClose={handleClose} data={modalData} />
+        {modal.type === ModalTypes.CREATE_PANEL && (
+          <CreatePanelModal handleClose={handleClose} />
         )}
       </Outer>
       {children}

@@ -2,6 +2,7 @@ import styled, { css } from "styled-components";
 import { L3 } from "../../styles/typography";
 import PlusSVG from "../../assets/plus.svg?react";
 import COLORS from "../../styles/colors";
+import { ReactNode } from "react";
 
 interface StyleProps {
   $isSecondary?: boolean;
@@ -56,7 +57,7 @@ const PlusIcon = styled(PlusSVG)`
 `;
 
 interface ButtonProps {
-  children: string;
+  children: ReactNode;
   onClick(): void;
   className?: string;
   hasPlusIcon?: boolean;

@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { SIDEPANEL_WIDTH } from "../SidePanel";
 import COLORS from "../../styles/colors";
 import { ActiveItems } from "../../types";
-
 import Panels from "../Panels";
 import Users from "../Users";
 import Dashboard from "../Dashboard";
