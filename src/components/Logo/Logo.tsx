@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import VitalLogo from "../../assets/vital-logo.svg?react";
+import { Link } from "react-router-dom";
 
-const Wrapper = styled.div`
+const Wrapper = styled(Link)`
   width: 100%;
   display: flex;
   padding: 10px 24px;
@@ -24,7 +25,7 @@ const Text = styled.div`
 
 const Logo = () => {
   return (
-    <Wrapper>
+    <Wrapper to="/">
       <LogoIcon />
       <Text>Vital</Text>
     </Wrapper>

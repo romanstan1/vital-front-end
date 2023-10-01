@@ -92,7 +92,7 @@ const PanelsTable = () => {
       </Header>
       {panels.length === 0 ? (
         <EmptyContent>
-          <EmptyText>You don't have any panels yet</EmptyText>
+          <EmptyText>You don't have any panels yet hello</EmptyText>
         </EmptyContent>
       ) : (
         <Content>

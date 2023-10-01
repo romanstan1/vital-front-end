@@ -1,7 +1,7 @@
 import { useState } from "react";
-import SidePanel from "./components/SidePanel";
-import MainContent from "./components/MainContent";
-import { ActiveItems } from "./types";
+import SidePanel from "../SidePanel";
+import MainContent from "../MainContent";
+import { ActiveItems } from "../../types";
 
 function App() {
   const [active, setActive] = useState<ActiveItems>(ActiveItems.Dashboard);
