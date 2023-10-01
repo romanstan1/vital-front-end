@@ -6,7 +6,6 @@ import InfiniteBanner from "./InfiniteBanner";
 import PulseAnimation from "./PulseAnimation";
 import WideAnimation from "./WideAnimation";
 import BlueBlur from "./BlueBlur";
-import GlobeAnimation from "./GlobeAnimation";
 
 const HeroWrapper = styled.div`
   position: relative;
@@ -134,7 +133,6 @@ function Home() {
           <WideAnimation />
         </Section>
       </SecondWrapper>
-      <GlobeAnimation />
     </>
   );
 }
