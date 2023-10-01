@@ -4,6 +4,7 @@ import Nav from "./Nav";
 import CtaButton from "./CtaButton";
 import InfiniteBanner from "./InfiniteBanner";
 import PulseAnimation from "./PulseAnimation";
+import WideAnimation from "./WideAnimation";
 import BlueBlur from "./BlueBlur";
 
 const HeroWrapper = styled.div`
@@ -88,7 +89,6 @@ const ButtonWrapper = styled.div`
 
 const Section = styled.div`
   margin-bottom: 500px;
-  margin-top: 100px;
   position: relative;
   width: 100%;
 `;
@@ -130,6 +130,7 @@ function Home() {
             Instantly access data from 500+ devices and results from labs across
             50 States
           </SubHeading>
+          <WideAnimation />
         </Section>
       </SecondWrapper>
     </>

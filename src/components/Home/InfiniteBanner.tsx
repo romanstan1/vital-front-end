@@ -11,7 +11,7 @@ const slide = keyframes`
 
 const Outer = styled.div`
   overflow: hidden;
-  margin: 40px 0 20px 0;
+  margin: 40px 0 120px 0;
   width: 100%;
   max-width: 100%;
 `;
