@@ -10,6 +10,7 @@ const colors = {
   midLightGray: "#f4f8ff", // active background
   tableGray: "rgb(149, 170, 201)", // table color text
   midGray: "#6e84a3", // text color
+  // activeBlue: "rgba(50, 62, 209, 1)",
   activeBlue: "#003fff",
 };
 

@@ -3,7 +3,6 @@ import VitalLogo from "../../assets/vital-logo.svg?react";
 import { Link } from "react-router-dom";
 
 const Wrapper = styled(Link)`
-  width: 100%;
   display: flex;
   padding: 10px 24px;
   height: 30px;
