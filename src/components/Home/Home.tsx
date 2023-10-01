@@ -6,6 +6,7 @@ import InfiniteBanner from "./InfiniteBanner";
 import PulseAnimation from "./PulseAnimation";
 import WideAnimation from "./WideAnimation";
 import BlueBlur from "./BlueBlur";
+import GlobeAnimation from "./GlobeAnimation";
 
 const HeroWrapper = styled.div`
   position: relative;
@@ -27,7 +28,7 @@ const HeroWrapper = styled.div`
 `;
 
 const SecondWrapper = styled.div`
-  height: 200vh;
+  height: 1500px;
   max-width: 1320px;
   margin: 0 auto;
   padding: 100px 20px;
@@ -133,6 +134,7 @@ function Home() {
           <WideAnimation />
         </Section>
       </SecondWrapper>
+      <GlobeAnimation />
     </>
   );
 }
