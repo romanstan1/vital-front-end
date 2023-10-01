@@ -4,6 +4,7 @@ import Nav from "./Nav";
 import CtaButton from "./CtaButton";
 import InfiniteBanner from "./InfiniteBanner";
 import PulseAnimation from "./PulseAnimation";
+import BlueBlur from "./BlueBlur";
 
 const HeroWrapper = styled.div`
   position: relative;
@@ -90,23 +91,6 @@ const Section = styled.div`
   margin-top: 100px;
   position: relative;
   width: 100%;
-`;
-
-const BlueBlur = styled.div`
-  background: linear-gradient(
-    108deg,
-    rgb(0, 63, 255, 0.8),
-    rgba(50, 100, 255, 0.65)
-  );
-  filter: blur(110px);
-  border-radius: 6px 6px 12px 12px;
-  width: 80%;
-  height: 50vh;
-  /* margin: 0 auto; */
-  left: 50%;
-  transform: translate(-50%, 0);
-  position: absolute;
-  bottom: -20%;
 `;
 
 function Home() {
