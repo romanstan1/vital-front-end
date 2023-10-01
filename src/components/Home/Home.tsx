@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { rem } from "../../styles/typography";
 import Nav from "./Nav";
+import CtaButton from "./CtaButton";
 
 const HeroWrapper = styled.div`
   display: flex;
@@ -58,13 +59,17 @@ const TextWrapper = styled.div`
   margin: 0 20px;
 `;
 
+const ButtonWrapper = styled.div`
+  display: flex;
+  margin-top: 40px;
+`;
+
 const BlueBlur = styled.div`
   background: linear-gradient(
     108deg,
     rgb(0, 63, 255, 0.8),
     rgba(50, 100, 255, 0.65)
   );
-  /* background: linear-gradient(108deg, rgb(0, 63, 255), rgba(115, 140, 255, 0.75)); */
   filter: blur(110px);
   border-radius: 6px 6px 12px 12px;
   width: 70%;
@@ -82,6 +87,12 @@ function Home() {
             Vital helps leading digital health & wellness companies connect to
             wearables and labs, through a single universal API.
           </HeroSubHeading>
+          <ButtonWrapper>
+            <CtaButton to="/app" isLarge>
+              Get started
+            </CtaButton>
+            {/* <CtaButton to="/app">Get started</CtaButton> */}
+          </ButtonWrapper>
         </TextWrapper>
         <BlueBlur>{/*  */}</BlueBlur>
       </HeroWrapper>

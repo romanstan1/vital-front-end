@@ -14,7 +14,7 @@ const animateText = (from: string, to: string) => keyframes`
   }
 `;
 
-const Character = styled.span<{ $mouseout?: boolean }>`
+const Character = styled.span`
   position: relative;
   display: inline-block;
   min-width: 5px;
@@ -29,41 +29,45 @@ const Character = styled.span<{ $mouseout?: boolean }>`
     left: 0;
     transform: translateY(200%);
   }
-
-  ${(props) =>
-    props.$mouseout &&
-    css`
-      animation-name: ${animateText("-200%", "0")};
-    `}
 `;
 
 const Wrapper = styled.div`
-  font-size: ${rem(15)};
   color: white;
   white-space: nowrap;
   border-bottom: 1px solid transparent;
   transition: 0.2s ease;
-  background: ${COLORS.activeBlue};
+  background: ${COLORS.activeBlue09};
   border-radius: 1px;
   cursor: pointer;
   &:hover {
+    background: ${COLORS.activeBlue};
+
     ${Character} {
       animation-name: ${animateText("0", "-200%")};
     }
   }
 `;
 
-const CharacterWrapper = styled.div`
+const CharacterWrapper = styled.div<{ $isLarge?: boolean }>`
   padding: 13px 20px;
   overflow: hidden;
+  font-size: ${rem(15)};
+
+  ${(props) =>
+    props.$isLarge &&
+    css`
+      font-size: ${rem(16)};
+      padding: 17px 25px;
+    `};
 `;
 
 interface Props {
   children: string;
   to: string;
+  isLarge?: boolean;
 }
 
-const CtaButton = ({ children, to }: Props) => {
+const CtaButton = ({ children, to, isLarge }: Props) => {
   const characters = [...children];
   const navigate = useNavigate();
 
@@ -73,12 +77,11 @@ const CtaButton = ({ children, to }: Props) => {
 
   return (
     <Wrapper onClick={handleClick}>
-      <CharacterWrapper>
+      <CharacterWrapper $isLarge={isLarge}>
         {characters.map((char, i) => (
           <Character
             key={i}
             data-char={char}
-            $mouseout={false}
             style={{
               animationDelay: `${150 * easeOutQuad(i / characters.length)}ms`,
             }}
