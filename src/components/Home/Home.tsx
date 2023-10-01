@@ -24,6 +24,11 @@ const HeroWrapper = styled.div`
 
 const SecondWrapper = styled.div`
   height: 200vh;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 100px 20px;
+  width: 100%;
+  color: white;
 `;
 
 const HeroHeading = styled.h1`
@@ -36,6 +41,14 @@ const HeroHeading = styled.h1`
   text-align: center;
 `;
 
+const Heading = styled(HeroHeading)`
+  color: black;
+  text-align: left;
+  font-size: ${rem(60)};
+  line-height: ${rem(65)};
+  max-width: 800px;
+`;
+
 const HeroSubHeading = styled.p`
   font-size: ${rem(18)};
   line-height: ${rem(25)};
@@ -45,6 +58,13 @@ const HeroSubHeading = styled.p`
   margin: 0;
   text-align: center;
   max-width: 550px;
+`;
+
+const SubHeading = styled(HeroSubHeading)`
+  color: black;
+  text-align: left;
+  font-size: ${rem(20)};
+  line-height: ${rem(25)};
 `;
 
 const TextWrapper = styled.div`
@@ -61,6 +81,11 @@ const ButtonWrapper = styled.div`
   display: flex;
   margin-top: 70px;
   gap: 10px;
+`;
+const Section = styled.div`
+  /* display: flex; */
+  margin-bottom: 500px;
+  margin-top: 100px;
 `;
 
 const BlueBlur = styled.div`
@@ -100,9 +125,23 @@ function Home() {
             </CtaButton>
           </ButtonWrapper>
         </TextWrapper>
-        <BlueBlur>{/*  */}</BlueBlur>
+        <BlueBlur />
       </HeroWrapper>
-      <SecondWrapper>{/* Content */}</SecondWrapper>
+      <SecondWrapper>
+        <Section>
+          <Heading>Personalized health data at your fingertips</Heading>
+          <SubHeading>
+            Gain a unified view into your health data from wearables and labs
+          </SubHeading>
+        </Section>
+        <Section>
+          <Heading>The widest coverage with one integration</Heading>
+          <SubHeading>
+            Instantly access data from 500+ devices and results from labs across
+            50 States
+          </SubHeading>
+        </Section>
+      </SecondWrapper>
     </>
   );
 }
