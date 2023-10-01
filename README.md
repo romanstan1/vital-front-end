@@ -30,6 +30,6 @@ Some ideas and thoughts on the brand direction and styling:
 - Impactful hero section. A dark background with white text is eye catching, with more use of the blue brand color and gradients.
 - Animations and visual movement on the homepage especially, given that the nature of data collection is constant, dynamic and changing, a feeling of movement would represent what the brand does, whilst also being eye catching.
 
-- More contrasting text hierachy, thicker headings and thin subheadigns, introducing 2 fonts on the home page instead of just one.
+- More contrasting text, with better hierachy i.e thicker headings next to thin subheadings. Also introducing 2 fonts on the home page instead of just one.
 
-This is just a suggestion of how the homepage could look, it's by no means complete. In the future I would like to add better SVG animations, such as in https://stripe.com/en-gb-us and far more detail.
+This is just a suggestion of how the homepage could look, it's by no means complete. In the future I would like to add better SVG animations, such as in https://stripe.com/en-gb-us, and far more detail throughout the page.
