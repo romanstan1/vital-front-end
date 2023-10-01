@@ -3,6 +3,7 @@ import { rem } from "../../styles/typography";
 import Nav from "./Nav";
 import CtaButton from "./CtaButton";
 import InfiniteBanner from "./InfiniteBanner";
+import PulseAnimation from "./PulseAnimation";
 
 const HeroWrapper = styled.div`
   position: relative;
@@ -83,10 +84,12 @@ const ButtonWrapper = styled.div`
   margin-top: 70px;
   gap: 10px;
 `;
+
 const Section = styled.div`
-  /* display: flex; */
   margin-bottom: 500px;
   margin-top: 100px;
+  position: relative;
+  width: 100%;
 `;
 
 const BlueBlur = styled.div`
@@ -135,6 +138,7 @@ function Home() {
           <SubHeading>
             Gain a unified view into your health data from wearables and labs
           </SubHeading>
+          <PulseAnimation />
         </Section>
         <Section>
           <Heading>The widest coverage with one integration</Heading>
