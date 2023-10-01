@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { rem } from "../../styles/typography";
 import Nav from "./Nav";
 import CtaButton from "./CtaButton";
-import InfiniteScroll from "./InfiniteScroll";
+import InfiniteBanner from "./InfiniteBanner";
 
 const HeroWrapper = styled.div`
   position: relative;
@@ -128,7 +128,7 @@ function Home() {
         </TextWrapper>
         <BlueBlur />
       </HeroWrapper>
-      <InfiniteScroll />
+      <InfiniteBanner />
       <SecondWrapper>
         <Section>
           <Heading>Personalized health data at your fingertips</Heading>

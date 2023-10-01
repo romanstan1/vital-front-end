@@ -1,5 +1,4 @@
 import styled, { keyframes } from "styled-components";
-// import { rem } from "../../styles/typography";
 import ClearLogo from "../../assets/logos/clear.svg?react";
 import UnaLogo from "../../assets/logos/una.svg?react";
 import WyndlyLogo from "../../assets/logos/wyndly.svg?react";
