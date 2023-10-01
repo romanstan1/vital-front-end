@@ -4,10 +4,7 @@ import Nav from "./Nav";
 import CtaButton from "./CtaButton";
 
 const HeroWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  position: relative;
   background-color: black;
   background-image: linear-gradient(
       170deg,
@@ -21,7 +18,7 @@ const HeroWrapper = styled.div`
       rgba(14, 14, 14, 0) 48%
     );
 
-  height: 140vh;
+  height: 110vh;
   overflow: hidden;
 `;
 
@@ -51,17 +48,19 @@ const HeroSubHeading = styled.p`
 `;
 
 const TextWrapper = styled.div`
-  height: 80vh;
+  height: 400px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 0 20px;
+  margin-top: 30vh;
+  margin-bottom: 100px;
 `;
 
 const ButtonWrapper = styled.div`
   display: flex;
-  margin-top: 40px;
+  margin-top: 70px;
+  gap: 10px;
 `;
 
 const BlueBlur = styled.div`
@@ -72,8 +71,13 @@ const BlueBlur = styled.div`
   );
   filter: blur(110px);
   border-radius: 6px 6px 12px 12px;
-  width: 70%;
-  height: 400px;
+  width: 80%;
+  height: 50vh;
+  /* margin: 0 auto; */
+  left: 50%;
+  transform: translate(-50%, 0);
+  position: absolute;
+  bottom: -20%;
 `;
 
 function Home() {
@@ -91,7 +95,9 @@ function Home() {
             <CtaButton to="/app" isLarge>
               Get started
             </CtaButton>
-            {/* <CtaButton to="/app">Get started</CtaButton> */}
+            <CtaButton to="/app" isLarge isSecondary>
+              Book a demo
+            </CtaButton>
           </ButtonWrapper>
         </TextWrapper>
         <BlueBlur>{/*  */}</BlueBlur>

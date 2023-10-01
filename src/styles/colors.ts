@@ -1,5 +1,6 @@
 const colors = {
   white: "#FFFFFF",
+  white08: "rgb(255, 255, 255, 0.8)",
   black: "#1A202C",
   black05: "rgb(1, 1, 1, 0.5)",
   hoverBlack: "#000000",

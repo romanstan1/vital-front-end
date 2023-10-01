@@ -31,7 +31,7 @@ const Character = styled.span`
   }
 `;
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{ $isSecondary?: boolean }>`
   color: white;
   white-space: nowrap;
   border-bottom: 1px solid transparent;
@@ -41,21 +41,33 @@ const Wrapper = styled.div`
   cursor: pointer;
   &:hover {
     background: ${COLORS.activeBlue};
-
     ${Character} {
       animation-name: ${animateText("0", "-200%")};
     }
   }
+
+  ${(props) =>
+    props.$isSecondary &&
+    css`
+      border: 1px solid ${COLORS.white08};
+      background: transparent;
+      &:hover {
+        background: transparent;
+      }
+    `};
 `;
 
 const CharacterWrapper = styled.div<{ $isLarge?: boolean }>`
   padding: 13px 20px;
   overflow: hidden;
   font-size: ${rem(15)};
+  display: flex;
+  justify-content: center;
 
   ${(props) =>
     props.$isLarge &&
     css`
+      min-width: 150px;
       font-size: ${rem(16)};
       padding: 17px 25px;
     `};
@@ -65,9 +77,10 @@ interface Props {
   children: string;
   to: string;
   isLarge?: boolean;
+  isSecondary?: boolean;
 }
 
-const CtaButton = ({ children, to, isLarge }: Props) => {
+const CtaButton = ({ children, to, isLarge, isSecondary }: Props) => {
   const characters = [...children];
   const navigate = useNavigate();
 
@@ -76,7 +89,7 @@ const CtaButton = ({ children, to, isLarge }: Props) => {
   };
 
   return (
-    <Wrapper onClick={handleClick}>
+    <Wrapper onClick={handleClick} $isSecondary={isSecondary}>
       <CharacterWrapper $isLarge={isLarge}>
         {characters.map((char, i) => (
           <Character

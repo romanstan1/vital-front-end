@@ -5,19 +5,23 @@ import { rem } from "../../styles/typography";
 import { Link } from "react-router-dom";
 import CtaButton from "./CtaButton";
 
+const Outer = styled.div`
+  height: 80px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+`;
+
 const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 80px;
+  height: 100%;
   max-width: 1280px;
   margin: 0 auto;
   width: 100%;
   color: white;
-  position: absolute;
-  top: 0;
-  left: auto;
-  right: auto;
   padding-right: 24px;
 `;
 
@@ -50,20 +54,22 @@ const MenuButton = styled(Link)`
 
 const Nav = () => {
   return (
-    <Wrapper>
-      <Logo />
-      <Center>
-        <MenuButton to="/">Products</MenuButton>
-        <MenuButton to="/">Developers</MenuButton>
-        <MenuButton to="/">Pricing</MenuButton>
-        <MenuButton to="/">Customers</MenuButton>
-        <MenuButton to="/">About</MenuButton>
-      </Center>
-      <Right>
-        <MenuButton to="/app">Sign in</MenuButton>
-        <CtaButton to="/app">Get started</CtaButton>
-      </Right>
-    </Wrapper>
+    <Outer>
+      <Wrapper>
+        <Logo />
+        <Center>
+          <MenuButton to="/">Products</MenuButton>
+          <MenuButton to="/">Developers</MenuButton>
+          <MenuButton to="/">Pricing</MenuButton>
+          <MenuButton to="/">Customers</MenuButton>
+          <MenuButton to="/">About</MenuButton>
+        </Center>
+        <Right>
+          <MenuButton to="/app">Sign in</MenuButton>
+          <CtaButton to="/app">Get started</CtaButton>
+        </Right>
+      </Wrapper>
+    </Outer>
   );
 };
 
