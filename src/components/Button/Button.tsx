@@ -8,6 +8,7 @@ import COLORS from "../../styles/colors";
 interface StyleProps {
   $isSecondary?: boolean;
   $isBlue?: boolean;
+  $isDisabled?: boolean;
 }
 
 const Wrapper = styled.div<StyleProps>`
@@ -15,9 +16,9 @@ const Wrapper = styled.div<StyleProps>`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: black;
-  border-radius: 0.375rem;
-  height: 40px;
+  background: ${COLORS.activeBlue09};
+  border-radius: 1px;
+  height: 42px;
   opacity: 1;
   cursor: pointer;
   transition: 0.2s ease;
@@ -28,30 +29,30 @@ const Wrapper = styled.div<StyleProps>`
       background: ${COLORS.white};
       color: ${COLORS.lightGray};
       &:hover {
-        background: ${COLORS.lightGray};
+        background: ${COLORS.lightGray} !important;
         color: ${COLORS.activeGray01};
         opacity: 1;
       }
     `};
+
   ${(props) =>
-    props.$isBlue &&
+    props.$isDisabled &&
     css`
-      background: ${COLORS.activeBlue};
-      &:hover {
-        background: ${COLORS.activeBlue};
-        opacity: 0.95;
-      }
+      opacity: 0.5 !important;
+      pointer-events: none;
     `};
+
   &:hover {
-    opacity: 0.6;
+    background: ${COLORS.activeBlue};
   }
 `;
 
 const Text = styled(L3)<StyleProps>`
-  font-size: 10px;
-  font-weight: 500;
+  font-size: 13px;
+  font-weight: 600;
   color: white;
-  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  /* text-transform: uppercase; */
   ${(props) =>
     props.$isSecondary &&
     css`
@@ -74,6 +75,7 @@ interface ButtonProps {
   className?: string;
   hasPlusIcon?: boolean;
   isSecondary?: boolean;
+  isDisabled?: boolean;
   isBlue?: boolean;
 }
 
@@ -83,12 +85,14 @@ const Button = ({
   className,
   hasPlusIcon,
   isSecondary,
+  isDisabled,
   isBlue,
 }: ButtonProps) => {
   return (
     <Wrapper
       onClick={onClick}
       className={className}
+      $isDisabled={isDisabled}
       $isSecondary={isSecondary}
       $isBlue={isBlue}
     >

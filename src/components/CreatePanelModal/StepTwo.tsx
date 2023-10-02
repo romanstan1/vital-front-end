@@ -10,20 +10,29 @@ const FilterInput = styled.input`
   background: ${COLORS.activeGray01};
   outline: none;
   border: 0px;
-  border-radius: 4px;
-  padding-inline-start: 10px;
-  padding-inline-end: 15px;
-  border-color: ${COLORS.activeGray01};
-  min-height: 35px;
-  width: 500px;
+  border-radius: 2px;
+  padding-inline-start: 16px;
+  padding-inline-end: 16px;
+  min-height: 40px;
+  width: calc(100% - 32px);
   display: block;
-  margin: 12px 0 10px 20px;
+  margin: 5px 0;
+  font-size: 14px;
+  border: 1px solid ${COLORS.activeGray01};
+  color: ${COLORS.black};
+  margin: 12px 0 10px 15px;
+
+  &:focus {
+    border: 1px solid ${COLORS.activeBlue07};
+  }
   &:hover {
     background: ${COLORS.activeGray02};
   }
 `;
 
-const TableWrapper = styled.div``;
+const TableWrapper = styled.div`
+  width: calc(100% - 300px);
+`;
 
 const Label = styled(P2)`
   font-weight: 600;
@@ -38,6 +47,7 @@ const ContentInner = styled.div`
   padding: 5px 15px 15px 15px;
   overflow-y: scroll;
   height: 100%;
+  width: calc(100% - 300px);
 
   &::-webkit-scrollbar-track {
     border-radius: 4px;
@@ -59,7 +69,7 @@ const BiomarkerLineItem = styled.div<{ $selected?: boolean }>`
   padding: 5px;
   display: grid;
   grid-template-columns: 1fr 2fr;
-  border-radius: 4px;
+  border-radius: 1px;
   margin: 1px 0;
   cursor: pointer;
   user-select: none;
@@ -94,6 +104,7 @@ const HeadingCell = styled(Cell)`
   font-size: 10px;
   text-transform: uppercase;
   color: ${COLORS.midGray};
+  font-weight: 600;
 `;
 
 const RemoveItemCross = styled(CrossSVG)`
@@ -111,10 +122,13 @@ const RemoveItemCross = styled(CrossSVG)`
 const TableHeader = styled.div`
   display: grid;
   grid-template-columns: 1fr 2fr;
-  padding: 5px 20px;
+  padding: 5px 2px;
   position: relative;
-  margin-bottom: -5px;
-  &::after {
+  margin: 0 15px;
+  /* margin-bottom: -5px; */
+  border-bottom: 1px solid ${COLORS.lightGray};
+
+  /* &::after {
     position: absolute;
     bottom: -5px;
     left: 0;
@@ -123,12 +137,12 @@ const TableHeader = styled.div`
     content: "";
     z-index: 2;
     background: red;
-    background: linear-gradient(
+    /* background: linear-gradient(
       180deg,
       rgba(255, 255, 255, 1),
       rgba(255, 255, 255, 0)
-    );
-  }
+    ); */
+  /* } */
 `;
 
 interface StepTwoProps {
@@ -147,7 +161,6 @@ const StepTwo = ({
   return (
     <>
       <TableWrapper>
-        <Label>Choose biomarkers</Label>
         <FilterInput
           onChange={handleFilter}
           placeholder="Filter by name or description"

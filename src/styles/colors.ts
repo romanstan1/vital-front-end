@@ -12,8 +12,9 @@ const colors = {
   tableGray: "rgb(149, 170, 201)", // table color text
   midGray: "#6e84a3", // text color
   // activeBlue: "rgba(50, 62, 209, 1)",
-  activeBlue: "rgb(0, 63, 255, 1)",
-  activeBlue09: "rgb(0, 63, 255, 0.9)",
+  activeBlue: "rgba(54,51,242, 1)",
+  activeBlue09: "rgba(54,51,242, 0.9)",
+  activeBlue07: "rgba(54,51,242, 0.7)",
 };
 
 export default colors;

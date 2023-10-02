@@ -6,13 +6,14 @@ import { TestKitType } from "../../types";
 const CollectionButtonWrapper = styled.div`
   display: flex;
   gap: 10px;
-  margin: 10px 0;
+  margin: 5px 0;
 `;
 
 const CollectionButton = styled.div<{ $isActive?: boolean }>`
-  padding: 12px 20px;
-  border-radius: 5px;
+  padding: 13px 20px;
+  border-radius: 1px;
   border: 1px solid ${COLORS.lightGray};
+  font-size: 16px;
   cursor: pointer;
   &:hover {
     background: ${COLORS.activeGray01};
@@ -21,11 +22,14 @@ const CollectionButton = styled.div<{ $isActive?: boolean }>`
   ${({ $isActive }) =>
     $isActive &&
     css`
+      border: 1px solid ${COLORS.activeBlue};
       background: ${COLORS.activeGray01};
     `};
 `;
 
-const ButtonHeader = styled(P2)``;
+const ButtonHeader = styled.div`
+  font-size: 16px;
+`;
 
 interface Props {
   onClick(type: TestKitType): void;

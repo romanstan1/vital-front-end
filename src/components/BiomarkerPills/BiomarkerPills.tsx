@@ -17,7 +17,7 @@ const PillWrapper = styled.div<{ $canClick?: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 30px;
+  border-radius: 1px;
   gap: 5px;
   background: ${COLORS.black};
   color: ${COLORS.white};

@@ -15,7 +15,7 @@ import { usePanels } from "../../contexts/PanelContext";
 const Wrapper = styled.div<{ $isLarge?: boolean }>`
   max-width: 600px;
   width: 90%;
-  max-height: 520px;
+  max-height: 400px;
   height: 95vh;
   display: flex;
   flex-direction: column;
@@ -34,7 +34,7 @@ const Wrapper = styled.div<{ $isLarge?: boolean }>`
     props.$isLarge &&
     css`
       max-height: 720px;
-      max-width: 780px;
+      max-width: 900px;
     `};
 `;
 
@@ -48,7 +48,7 @@ const CloseButton = styled.div`
   background: transparent;
   height: 40px;
   width: 40px;
-  border-radius: 6px;
+  border-radius: 1px;
   transition: 0.2s ease;
   cursor: pointer;
   &:hover {
@@ -60,10 +60,51 @@ const CloseButton = styled.div`
   }
 `;
 
+const StepLabel = styled.div`
+  color: ${COLORS.midGray};
+  font-weight: 600;
+  font-size: 10px;
+  font-weight: 700;
+  span {
+    /* background: rgb(49, 23, 219); */
+    color: ${COLORS.activeBlue09};
+  }
+`;
+
+const IconWrapper = styled.div`
+  width: 40px;
+  height: 40px;
+  border: 1px solid ${COLORS.activeBlue09};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+  div {
+    background: ${COLORS.activeBlue09};
+    border-radius: 100%;
+    width: 28px;
+    height: 28px;
+  }
+`;
+
 const Heading = styled(H2)`
-  padding: 0 20px 20px 20px;
+  font-size: 19px;
+  font-weight: 700;
   text-align: left;
-  border-bottom: 1px solid ${COLORS.lightGray};
+`;
+
+const HeadingWrapperInner = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+`;
+
+const HeadingWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 0 20px 20px 20px;
+  /* border-bottom: 3px solid ${COLORS.lightGray}; */
 `;
 
 const Content = styled.div`
@@ -74,22 +115,25 @@ const Content = styled.div`
 `;
 
 const CtaButton = styled(Button)`
-  position: absolute;
-  right: 20px;
-  bottom: 15px;
+  /* position: absolute; */
+  display: inline-flex;
 `;
 
 const BackButton = styled(Button)`
-  position: absolute;
-  left: 20px;
-  bottom: 15px;
+  display: inline-flex;
+
+  /* left: 20px;
+  bottom: 15px; */
 `;
 
 const ButtonBar = styled.div`
-  min-height: 60px;
-  padding: 5px 15px 15px 15px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row-reverse;
+  padding: 15px 15px 15px 15px;
   background: ${COLORS.panelGray};
   position: relative;
+  border-top: 1px solid ${COLORS.lightGray};
   width: 100%;
 `;
 
@@ -194,15 +238,25 @@ const CreatePanelModal = ({ handleClose }: CreatePanelModalProps) => {
     }
   };
 
-  const summaryBarExists = panelName.length > 0 || testKit;
-
   return (
     <Wrapper $isLarge={step === 1}>
       <CloseButton onClick={handleClose}>
         <CrossSVG />
       </CloseButton>
       <Content>
-        <Heading>Create a panel</Heading>
+        <HeadingWrapper>
+          <IconWrapper>
+            <div></div>
+          </IconWrapper>
+          <HeadingWrapperInner>
+            <StepLabel>
+              <span>STEP {step + 1} /</span> 2
+            </StepLabel>
+            <Heading>
+              {step === 0 ? "Panel Details" : "Select Biomarkers"}
+            </Heading>
+          </HeadingWrapperInner>
+        </HeadingWrapper>
         {step === 0 && (
           <StepOne
             handleNameInput={handleNameInput}
@@ -219,8 +273,7 @@ const CreatePanelModal = ({ handleClose }: CreatePanelModalProps) => {
             handleClickBiomarker={handleClickBiomarker}
           />
         )}
-
-        {summaryBarExists && (
+        {step === 1 && (
           <SummarySection
             panelName={panelName}
             testKitMethod={testKit}
@@ -228,26 +281,30 @@ const CreatePanelModal = ({ handleClose }: CreatePanelModalProps) => {
             handleRemoveBiomarker={handleRemoveBiomarker}
           />
         )}
+        <ButtonBar>
+          {step === 0 && (
+            <CtaButton
+              isDisabled={panelName.length === 0 || !testKit}
+              onClick={handleNextStep}
+            >
+              Continue
+            </CtaButton>
+          )}
 
-        {summaryBarExists && (
-          <ButtonBar>
-            {step === 0 && panelName.length > 0 && testKit && (
-              <CtaButton onClick={handleNextStep}>Continue</CtaButton>
-            )}
-            {step === 1 && (
-              <>
-                <BackButton onClick={handleBackStep} isSecondary>
-                  Back
-                </BackButton>
-                {selectedBiomarkers.length > 0 && (
-                  <CtaButton onClick={handleCreatePanel}>
-                    Create panel
-                  </CtaButton>
-                )}
-              </>
-            )}
-          </ButtonBar>
-        )}
+          {step === 1 && (
+            <>
+              <CtaButton
+                onClick={handleCreatePanel}
+                isDisabled={selectedBiomarkers.length === 0}
+              >
+                Create panel
+              </CtaButton>
+              <BackButton onClick={handleBackStep} isSecondary>
+                Back
+              </BackButton>
+            </>
+          )}
+        </ButtonBar>
       </Content>
     </Wrapper>
   );
