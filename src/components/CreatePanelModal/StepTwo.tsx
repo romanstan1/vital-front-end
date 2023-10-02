@@ -60,6 +60,7 @@ const ContentInner = styled.div`
 
 const BiomarkerLineItem = styled.div<{ $selected?: boolean }>`
   padding: 5px;
+  padding-right: 20px;
   display: grid;
   grid-template-columns: 1fr 2fr;
   border-radius: 1px;
@@ -67,8 +68,10 @@ const BiomarkerLineItem = styled.div<{ $selected?: boolean }>`
   cursor: pointer;
   user-select: none;
   position: relative;
+  border: 1px solid transparent;
+
   &:hover {
-    background: ${COLORS.activeGray01};
+    background: ${COLORS.midLightGray};
   }
   svg {
     opacity: 0;
@@ -76,10 +79,13 @@ const BiomarkerLineItem = styled.div<{ $selected?: boolean }>`
   ${(props) =>
     props.$selected &&
     css`
-      background: ${COLORS.black};
-      color: ${COLORS.white};
+      background: ${COLORS.activeBlue01};
+      color: ${COLORS.black};
+      border: 1px solid ${COLORS.activeBlue05};
       &:hover {
-        background: ${COLORS.black};
+        background: ${COLORS.activeBlue01};
+        color: ${COLORS.black};
+        border: 1px solid ${COLORS.activeBlue05};
         svg {
           opacity: 1;
         }

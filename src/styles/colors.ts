@@ -15,6 +15,8 @@ const colors = {
   activeBlue: "rgba(54,51,242, 1)",
   activeBlue09: "rgba(54,51,242, 0.9)",
   activeBlue07: "rgba(54,51,242, 0.7)",
+  activeBlue05: "rgba(54,51,242, 0.5)",
+  activeBlue01: "rgba(54,51,242, 0.1)",
 };
 
 export default colors;
