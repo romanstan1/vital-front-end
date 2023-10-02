@@ -1,6 +1,5 @@
 import styled, { css } from "styled-components";
 import COLORS from "../../styles/colors";
-import { P2 } from "../../styles/typography";
 import { TestKitType } from "../../types";
 
 const CollectionButtonWrapper = styled.div`

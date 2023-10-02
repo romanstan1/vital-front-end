@@ -34,13 +34,6 @@ const TableWrapper = styled.div`
   width: calc(100% - 300px);
 `;
 
-const Label = styled(P2)`
-  font-weight: 600;
-  font-size: 16px;
-  color: ${COLORS.black};
-  margin: 20px 0px 5px 20px;
-`;
-
 const ContentInner = styled.div`
   display: flex;
   flex-direction: column;
