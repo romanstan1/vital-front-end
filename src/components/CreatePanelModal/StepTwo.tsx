@@ -103,7 +103,7 @@ const Cell = styled(P2)`
 const HeadingCell = styled(Cell)`
   font-size: 10px;
   text-transform: uppercase;
-  color: ${COLORS.midGray};
+  color: ${COLORS.tableGray};
   font-weight: 600;
 `;
 
@@ -125,24 +125,7 @@ const TableHeader = styled.div`
   padding: 5px 2px;
   position: relative;
   margin: 0 15px;
-  /* margin-bottom: -5px; */
   border-bottom: 1px solid ${COLORS.lightGray};
-
-  /* &::after {
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 100%;
-    height: 10px;
-    content: "";
-    z-index: 2;
-    background: red;
-    /* background: linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 1),
-      rgba(255, 255, 255, 0)
-    ); */
-  /* } */
 `;
 
 interface StepTwoProps {

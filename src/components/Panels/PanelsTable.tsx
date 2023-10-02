@@ -10,7 +10,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   border: 1px solid ${COLORS.lightGray};
   margin-top: 8px;
-  border-radius: 10px;
+  border-radius: 1px;
   overflow: hidden;
 `;
 

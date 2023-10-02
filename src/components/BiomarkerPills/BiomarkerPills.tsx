@@ -13,7 +13,7 @@ const Wrapper = styled.div`
 `;
 
 const PillWrapper = styled.div<{ $canClick?: boolean }>`
-  padding: 5px 8px 5px 10px;
+  padding: 5px;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -18,7 +18,7 @@ const Label = styled(P2)`
   text-transform: uppercase;
   font-size: 12px;
   letter-spacing: 1px;
-  color: ${COLORS.midGray};
+  color: ${COLORS.tableGray};
   margin-bottom: 0px;
   padding: 0;
 `;

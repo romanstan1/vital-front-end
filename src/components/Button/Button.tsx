@@ -77,6 +77,8 @@ interface ButtonProps {
   isSecondary?: boolean;
   isDisabled?: boolean;
   isBlue?: boolean;
+  rightIcon?: ReactNode;
+  leftIcon?: ReactNode;
 }
 
 const Button = ({
@@ -87,6 +89,8 @@ const Button = ({
   isSecondary,
   isDisabled,
   isBlue,
+  rightIcon,
+  leftIcon,
 }: ButtonProps) => {
   return (
     <Wrapper
@@ -97,7 +101,9 @@ const Button = ({
       $isBlue={isBlue}
     >
       {hasPlusIcon && <PlusIcon />}
+      {leftIcon}
       <Text $isSecondary={isSecondary}>{children}</Text>
+      {rightIcon}
     </Wrapper>
   );
 };

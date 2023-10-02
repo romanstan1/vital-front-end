@@ -3,6 +3,9 @@ import styled, { css } from "styled-components";
 
 import COLORS from "../../styles/colors";
 import CrossSVG from "../../assets/cross.svg?react";
+import MarkerSVG from "../../assets/marker.svg?react";
+import DetailsSVG from "../../assets/pencil.svg?react";
+import ArrowSVG from "../../assets/arrow.svg?react";
 import { BiomarkerData, Marker, TestKitType, Panel } from "../../types";
 import { H2 } from "../../styles/typography";
 import Button from "../Button";
@@ -66,7 +69,6 @@ const StepLabel = styled.div`
   font-size: 10px;
   font-weight: 700;
   span {
-    /* background: rgb(49, 23, 219); */
     color: ${COLORS.activeBlue09};
   }
 `;
@@ -84,6 +86,9 @@ const IconWrapper = styled.div`
     border-radius: 100%;
     width: 28px;
     height: 28px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 `;
 
@@ -104,7 +109,6 @@ const HeadingWrapper = styled.div`
   align-items: center;
   gap: 14px;
   padding: 0 20px 20px 20px;
-  /* border-bottom: 3px solid ${COLORS.lightGray}; */
 `;
 
 const Content = styled.div`
@@ -115,15 +119,32 @@ const Content = styled.div`
 `;
 
 const CtaButton = styled(Button)`
-  /* position: absolute; */
   display: inline-flex;
 `;
 
 const BackButton = styled(Button)`
   display: inline-flex;
+`;
 
-  /* left: 20px;
-  bottom: 15px; */
+const RightArrow = styled(ArrowSVG)`
+  fill: ${COLORS.white};
+  margin-left: 5px;
+`;
+
+const LeftArrow = styled(ArrowSVG)`
+  margin-right: 5px;
+  fill: ${COLORS.black};
+  transform: rotate(180deg);
+`;
+
+const MarkerIcon = styled(MarkerSVG)`
+  fill: ${COLORS.white};
+`;
+
+const DetailsIcon = styled(DetailsSVG)`
+  fill: ${COLORS.white};
+  width: 19px;
+  height: 19px;
 `;
 
 const ButtonBar = styled.div`
@@ -246,7 +267,10 @@ const CreatePanelModal = ({ handleClose }: CreatePanelModalProps) => {
       <Content>
         <HeadingWrapper>
           <IconWrapper>
-            <div></div>
+            <div>
+              {step === 0 && <DetailsIcon />}
+              {step === 1 && <MarkerIcon />}
+            </div>
           </IconWrapper>
           <HeadingWrapperInner>
             <StepLabel>
@@ -284,6 +308,7 @@ const CreatePanelModal = ({ handleClose }: CreatePanelModalProps) => {
         <ButtonBar>
           {step === 0 && (
             <CtaButton
+              rightIcon={<RightArrow />}
               isDisabled={panelName.length === 0 || !testKit}
               onClick={handleNextStep}
             >
@@ -299,7 +324,11 @@ const CreatePanelModal = ({ handleClose }: CreatePanelModalProps) => {
               >
                 Create panel
               </CtaButton>
-              <BackButton onClick={handleBackStep} isSecondary>
+              <BackButton
+                onClick={handleBackStep}
+                leftIcon={<LeftArrow />}
+                isSecondary
+              >
                 Back
               </BackButton>
             </>
